@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page Design 3 - Professional I.T Solution</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { 
+      font-family: 'Montserrat', Arial, sans-serif; 
+      background: #f5f5f5; 
+      margin: 0; 
+      color: #05607B; 
+      line-height: 1.6;
+    }
+    
+    .floating-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.85);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      z-index: 10;
+      transition: background 0.3s;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 2rem;
+    }
+    .logo {
+      height: 38px;
+      width: auto;
+      display: block;
+      margin-right: 1.2rem;
+      vertical-align: middle;
+    }
+    .logo-link {
+      display: flex;
+      align-items: center;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links li a {
+      color: #05607B;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-links li a:hover, .nav-links li a:focus {
+      background: #f9c846;
+      color: #05607B;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1201;
+    }
+    .hamburger-bar {
+      width: 26px;
+      height: 3.5px;
+      background: #05607B;
+      margin: 3.5px 0;
+      border-radius: 2px;
+      transition: all 0.3s cubic-bezier(.4,2,.6,1);
+    }
+    .mobile-menu-overlay {
+      position: absolute;
+      top: 60px;
+      right: 1.2rem;
+      left: auto;
+      width: 210px;
+      height: auto;
+      background: #fff;
+      z-index: 1200;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-20px);
+      transition: opacity 0.35s cubic-bezier(.4,2,.6,1), transform 0.35s cubic-bezier(.4,2,.6,1);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 12px;
+      padding: 1.2rem 0.5rem;
+    }
+    .mobile-menu-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .mobile-nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      align-items: flex-start;
+      width: 100%;
+      gap: 0.5rem;
+    }
+    .mobile-nav-links li {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .mobile-nav-links li a {
+      color: #05607B;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s;
+      padding: 0.2rem 0.5rem;
+      margin: 0;
+      border-radius: 6px;
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+    .mobile-nav-links li a:hover, .mobile-nav-links li a:focus {
+      color: #f7b70b;
+      background: #f6f7fa;
+    }
+    
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+    @media (min-width: 901px) {
+      .mobile-menu-overlay {
+        display: none !important;
+      }
+    }
+    
+    /* Design 3 Hero Section - Simple, Elegant & Professional */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    
+    .hero-bg-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center center;
+      opacity: 0;
+      transition: opacity 2.5s ease-in-out;
+      z-index: 1;
+    }
+    
+    .hero-bg-placeholder.active {
+      opacity: 0.9;
+    }
+    
+    .hero-bg-dim {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 2;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      max-width: 1000px;
+      padding: 0 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      color: #05607B;
+      height: 100vh;
+    }
+    
+    .hero-logo {
+      position: relative;
+      z-index: 5;
+      width: 280px;
+      height: auto;
+      margin-bottom: 3rem;
+      display: block;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
+    }
+    
+    .hero-text-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      max-width: 800px;
+      padding: 0 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      color: #05607B;
+    }
+    
+    /* Simple & Professional Title */
+    .hero-title {
+      font-size: 3.2rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      color: #f9c846;
+      letter-spacing: 1px;
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+      position: relative;
+    }
+    
+    .hero-title.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .hero-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #05607B, #f9c846);
+      border-radius: 2px;
+    }
+    
+    /* Clean Description */
+    .hero-desc {
+      font-size: 1.3rem;
+      margin-bottom: 3rem;
+      color: #ffffff;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 400;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease-out 0.2s;
+    }
+    
+    .hero-desc.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .hero-learnmore-group {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      width: 100%;
+      max-width: 500px;
+    }
+    
+    .hero-learnmore {
+      background: #f9c846;
+      color: #05607B;
+      padding: 1rem 2.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid #f9c846;
+      transition: all 0.3s ease;
+      display: inline-block;
+      min-width: 160px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(249, 200, 70, 0.2);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .hero-learnmore:nth-child(1) {
+      transition: all 0.8s ease-out 0.4s;
+    }
+    
+    .hero-learnmore:nth-child(2) {
+      transition: all 0.8s ease-out 0.6s;
+    }
+    
+    .hero-learnmore.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .hero-learnmore:hover {
+      background: #ffffff;
+      color: #f9c846;
+      border-color: #f9c846;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(249, 200, 70, 0.3);
+    }
+    
+    .hero-learnmore:last-child {
+      background: #f9c846;
+      color: #05607B;
+      border-color: #f9c846;
+    }
+    
+    .hero-learnmore:last-child:hover {
+      background: #ffffff;
+      color: #f9c846;
+      border-color: #f9c846;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: #fff;
+      color: #05607B;
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 1rem 0;
+      border-top: 2px solid #ddd;
+    }
+    
+    .footer-link {
+      color: #0066cc;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: row;
+        gap: 0;
+        padding: 0 1rem;
+        justify-content: space-between;
+      }
+      
+      .desktop-nav {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .hero-content {
+        padding: 0 1rem;
+        padding-top: 2rem;
+      }
+      
+      .hero-logo {
+        width: 280px;
+        margin-bottom: 1rem;
+      }
+      
+      .hero-title {
+        font-size: 1.8rem;
+        padding: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .hero-desc {
+        font-size: 1rem;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .hero-learnmore-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      
+      .hero-learnmore {
+        min-width: 200px;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .nav-container {
+        padding: 0 0.5rem;
+      }
+      
+      .nav-links {
+        gap: 0.5rem;
+      }
+      
+      .nav-links li a {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+      }
+      
+      .hero-content {
+        padding: 0 0.5rem;
+        padding-top: 1.5rem;
+      }
+      
+      .hero-logo {
+        width: 220px;
+        margin-bottom: 0.8rem;
+      }
+      
+      .hero-title {
+        font-size: 1.4rem;
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .hero-desc {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+      }
+      
+      .hero-learnmore {
+        min-width: 180px;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Business Benefits Section */
+    .benefits-section {
+      background: #f6f7fa;
+      padding: 4rem 0;
+      width: 100%;
+    }
+    
+    .benefits-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    
+    .benefits-title {
+      font-size: 3rem;
+      color: #05607B;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+    
+    .benefits-underline {
+      width: 80px;
+      height: 4px;
+      background: #f7b70b;
+      margin: 0 auto 1rem;
+      border-radius: 2px;
+    }
+    
+    .benefits-subtitle {
+      font-size: 1.3rem;
+      color: #05607B;
+      margin-bottom: 3rem;
+      font-weight: 500;
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .benefit-card {
+      background: #fff;
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border: 2px solid #e0e0e0;
+      transition: all 0.3s ease;
+    }
+    
+    .benefit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+      border-color: #f7b70b;
+    }
+    
+    .benefit-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .benefit-card-title {
+      font-size: 1.5rem;
+      color: #05607B;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .benefit-card-desc {
+      font-size: 1.1rem;
+      color: #05607B;
+      line-height: 1.6;
+    }
+
+    /* Industry Experience Section */
+    .expertise-section {
+      background: #f6f7fa;
+      padding: 4rem 0;
+    }
+    
+    .expertise-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    
+    .expertise-title {
+      font-size: 3rem;
+      color: #05607B;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+    
+    .expertise-underline {
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #05607B, #f9c846);
+      margin: 0 auto 2rem auto;
+      border-radius: 2px;
+    }
+    
+    .expertise-subtitle {
+      font-size: 1.2rem;
+      color: #05607B;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .expertise-card {
+      background: #f6f7fa;
+      padding: 2rem;
+      border-radius: 12px;
+      border-left: 4px solid #f7b70b;
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+    
+    .expertise-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+    }
+    
+    .expertise-card h4 {
+      font-size: 1.3rem;
+      color: #05607B;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .expertise-card p {
+      font-size: 1rem;
+      color: #05607B;
+      line-height: 1.6;
+    }
+
+    /* Success Stories Section */
+    .success-section {
+      background: #fff;
+      padding: 2rem 0 4rem 0;
+    }
+    
+    .success-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    
+    .success-title {
+      font-size: 3rem;
+      color: #05607B;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+    
+    .success-underline {
+      width: 80px;
+      height: 4px;
+      background: #f7b70b;
+      margin: 0 auto 1rem;
+      border-radius: 2px;
+    }
+    
+    .success-subtitle {
+      font-size: 1.3rem;
+      color: #05607B;
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+    
+    .success-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .success-card {
+      background: #f6f7fa;
+      padding: 2.5rem;
+      border-radius: 12px;
+      border-left: 4px solid #f7b70b;
+      text-align: left;
+    }
+    
+    .success-quote {
+      font-size: 1.2rem;
+      color: #05607B;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .success-author-name {
+      font-size: 1.1rem;
+      color: #05607B;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    
+    .success-author-title {
+      font-size: 1rem;
+      color: #05607B;
+    }
+
+    /* Success Stories Slideshow */
+    .success-slider {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .success-slide {
+      display: none;
+      animation: slideInFromRight 0.8s ease-in-out;
+    }
+    
+    .success-slide.active {
+      display: block;
+    }
+    
+    .success-dots {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    
+    .dot {
+      height: 12px;
+      width: 12px;
+      margin: 0 8px;
+      background-color: #ddd;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .dot.active, .dot:hover {
+      background-color: #f7b70b;
+    }
+
+    /* Animation Keyframes */
+    @keyframes slideInFromRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    @keyframes bounceIn {
+      0% { opacity: 0; transform: scale(0.3); }
+      50% { opacity: 1; transform: scale(1.05); }
+      70% { transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Animation Classes */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1.5s ease;
+    }
+    
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .animate-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 1.5s ease;
+    }
+    
+    .animate-left.animated {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .animate-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 1.5s ease;
+    }
+    
+    .animate-right.animated {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .animate-scale {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 1.5s ease;
+    }
+    
+    .animate-scale.animated {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    .animate-bounce {
+      opacity: 0;
+      transform: scale(0.3);
+      transition: all 1.5s ease;
+    }
+    
+    .animate-bounce.animated {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Call to Action Section */
+    .cta-section {
+      background: linear-gradient(135deg, #f9c846 0%, #fad675 100%);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    
+    .cta-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .cta-title {
+      font-size: 3rem;
+      color: #05607B;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+    
+    .cta-subtitle {
+      font-size: 1.3rem;
+      color: #05607B;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .cta-primary {
+      background: #05607B;
+      color: #fff;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .cta-primary:hover {
+      background: #0a8bb3;
+      transform: translateY(-2px);
+    }
+    
+    .cta-secondary {
+      background: transparent;
+      color: #05607B;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: 2px solid #05607B;
+      transition: all 0.3s ease;
+    }
+    
+    .cta-secondary:hover {
+      background: #05607B;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* Cookies Popup Styles */
+    .cookies-popup {
+      position: fixed;
+      bottom: 2.2rem;
+      right: 2.2rem;
+      z-index: 1000;
+      display: flex;
+      align-items: flex-end;
+    }
+    .cookies-card {
+      background: #fff;
+      border: 2.5px solid #05607B;
+      border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      padding: 1.3rem 2.2rem 1.3rem 1.5rem;
+      min-width: 270px;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
+      font-size: 1.05rem;
+      color: #05607B;
+    }
+    .cookies-text {
+      margin-bottom: 0.5rem;
+      color: #05607B;
+      font-size: 1.05rem;
+    }
+    .cookies-btn-row {
+      display: flex;
+      gap: 1rem;
+    }
+    .cookies-allow-btn, .cookies-reject-btn {
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+    }
+    .cookies-allow-btn {
+      background: #f7b70b;
+      color: #05607B;
+    }
+    .cookies-allow-btn:hover, .cookies-allow-btn:focus {
+      background: #ffd700;
+    }
+    .cookies-reject-btn {
+      background: #eee;
+      color: #05607B;
+    }
+    .cookies-reject-btn:hover, .cookies-reject-btn:focus {
+      background: #05607B;
+      color: #fff;
+    }
+
+    /* Responsive Design for new sections */
+    @media (max-width: 768px) {
+      .hero-content {
+        padding: 0 1rem;
+        padding-top: 1rem;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .hero-desc {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+      }
+      
+      .hero-learnmore-group {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+      }
+      
+      .hero-learnmore {
+        width: 100%;
+        max-width: 280px;
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+      }
+      
+      .benefits-title, .success-title, .cta-title, .expertise-title {
+        font-size: 2.2rem;
+      }
+      
+      .benefits-grid, .success-grid, .expertise-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .success-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .success-card {
+        padding: 1.5rem;
+      }
+      
+      .success-quote {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .cta-primary, .cta-secondary {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 2rem;
+        letter-spacing: 1px;
+      }
+      
+      .hero-desc {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .hero-learnmore {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+        min-width: 200px;
+      }
+      
+      .benefits-title, .success-title, .cta-title, .expertise-title {
+        font-size: 1.8rem;
+      }
+      
+      .success-quote {
+        font-size: 0.9rem;
+      }
+      
+      .success-author-name {
+        font-size: 0.9rem;
+      }
+      
+      .success-author-title {
+        font-size: 0.8rem;
+      }
+    }
+    
+    @media (max-width: 700px) {
+      .cookies-popup {
+        right: 0.5rem;
+        bottom: 0.5rem;
+      }
+      .cookies-card {
+        min-width: 180px;
+        max-width: 95vw;
+        padding: 1rem 0.7rem 1rem 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="floating-navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="Professional I.T Solution Logo" class="logo"></a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="prototype-about.html">About</a></li>
+          <li><a href="prototype-services.html">Service</a></li>
+          <li><a href="prototype-contact.html">Contact</a></li>
+          <li><a href="prototype-join.html">Join Us</a></li>
+        </ul>
+      </div>
+      <div class="mobile-menu-overlay" id="mobile-menu">
+        <ul class="mobile-nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="prototype-about.html">About</a></li>
+          <li><a href="prototype-services.html">Service</a></li>
+          <li><a href="prototype-contact.html">Contact</a></li>
+          <li><a href="prototype-join.html">Join Us</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  
+  <section class="hero-section">
+    <!-- 1. Dedicated Advanced Team: Multiple people at a table in an office, laptops visible, no visible faces -->
+    <div class="hero-bg-placeholder active" style="background-image:url('assets/dedicated.jpg')"></div>
+    <!-- 2. Service Solution Company: Consulting, business meeting, hands, laptops, no faces -->
+    <div class="hero-bg-placeholder" style="background-image:url('assets/solution3.png')"></div>
+    <!-- 3. We Do Things Differently: Creative, modern workspace, no faces -->
+    <div class="hero-bg-placeholder" style="background-image:url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1920&h=1080&q=80')"></div>
+    <div class="hero-bg-dim"></div>
+    
+    <!-- Floating Elements - REMOVED -->
+    
+    <div class="hero-content">
+      
+      <div class="hero-text-content">
+        <h1 class="hero-title" id="hero-title">DEDICATED ADVANCED TEAM</h1>
+        <p class="hero-desc" id="hero-desc">Our collective insight and best practices guarantee high impact business results each time you partner with us.</p>
+        <div class="hero-learnmore-group">
+          <a href="prototype-about.html" class="hero-learnmore" id="hero-learnmore-0">Learn More</a>
+          <a href="prototype-about.html" class="hero-learnmore" id="hero-learnmore-1" style="display:none;">Learn More</a>
+          <a href="prototype-services.html" class="hero-learnmore" id="hero-learnmore-2" style="display:none;">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business Benefits Section -->
+  <section class="benefits-section">
+    <div class="benefits-container">
+      <h2 class="benefits-title animate-on-scroll">Why Choose Us</h2>
+      <div class="benefits-underline animate-on-scroll"></div>
+      <p class="benefits-subtitle animate-on-scroll">Transform your business with our proven expertise and innovative solutions</p>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card animate-left">
+          <div class="benefit-icon">💼</div>
+          <h3 class="benefit-card-title">Extensive IT and IT Enabled Back Office experience & expertise</h3>
+          <p class="benefit-card-desc">Our team brings years of specialized experience in both IT services and back office operations, ensuring comprehensive solutions for your business needs.</p>
+        </div>
+        
+        <div class="benefit-card animate-scale">
+          <div class="benefit-icon">🤝</div>
+          <h3 class="benefit-card-title">We nurture long-term client partnership</h3>
+          <p class="benefit-card-desc">We believe in building lasting relationships with our clients, working as your trusted technology partner for sustainable growth and success.</p>
+        </div>
+        
+        <div class="benefit-card animate-right">
+          <div class="benefit-icon">⭐</div>
+          <h3 class="benefit-card-title">We are guided by our core values of excellence, service and professionalism in providing the highest level of customer service</h3>
+          <p class="benefit-card-desc">Every interaction and solution we deliver is driven by our commitment to excellence, exceptional service, and unwavering professionalism.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industry Experience Section -->
+  <section class="expertise-section">
+    <div class="expertise-container">
+      <h2 class="expertise-title animate-on-scroll">Our Industry Experience</h2>
+      <div class="expertise-underline animate-on-scroll"></div>
+      <p class="expertise-subtitle animate-on-scroll">Serving diverse industries with specialized IT solutions</p>
+      
+      <div class="expertise-grid">
+        <div class="expertise-card animate-left">
+          <h4>Banking and Finance</h4>
+          <p>Secure financial systems and digital banking solutions for modern financial institutions.</p>
+        </div>
+        
+        <div class="expertise-card animate-scale">
+          <h4>Educational Institutions</h4>
+          <p>Learning management systems and educational technology solutions for schools and universities.</p>
+        </div>
+        
+        <div class="expertise-card animate-right">
+          <h4>Manufacturing</h4>
+          <p>Production management systems and industrial automation solutions for manufacturing companies.</p>
+        </div>
+        
+        <div class="expertise-card animate-left">
+          <h4>Distribution</h4>
+          <p>Supply chain management and distribution network optimization systems.</p>
+        </div>
+        
+        <div class="expertise-card animate-scale">
+          <h4>Insurance</h4>
+          <p>Policy management systems and claims processing solutions for insurance companies.</p>
+        </div>
+        
+        <div class="expertise-card animate-right">
+          <h4>Information Technology</h4>
+          <p>IT infrastructure management and technology consulting for tech companies.</p>
+        </div>
+        
+        <div class="expertise-card animate-left">
+          <h4>Telecommunication</h4>
+          <p>Network management systems and communication infrastructure solutions.</p>
+        </div>
+        
+        <div class="expertise-card animate-scale">
+          <h4>Logistics</h4>
+          <p>Fleet management and logistics optimization systems for transportation companies.</p>
+        </div>
+        
+        <div class="expertise-card animate-right">
+          <h4>Pharmaceutical</h4>
+          <p>Regulatory compliance systems and pharmaceutical management solutions.</p>
+        </div>
+        
+        <div class="expertise-card animate-left">
+          <h4>Power and Energy</h4>
+          <p>Energy management systems and power grid optimization solutions.</p>
+        </div>
+        
+        <div class="expertise-card animate-scale">
+          <h4>BPO</h4>
+          <p>Business process automation and outsourcing management systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stories Section -->
+  <section class="success-section">
+    <div class="success-container">
+      <h2 class="success-title animate-on-scroll">Success Stories</h2>
+      <div class="success-underline animate-on-scroll"></div>
+      <p class="success-subtitle animate-on-scroll">Real results from real clients</p>
+      
+      <div class="success-slider">
+        <div class="success-slide active">
+          <div class="success-grid">
+            <div class="success-card">
+              <div class="success-quote">"Professional I.T Solution transformed our entire operation. We saw a 50% increase in efficiency and 35% reduction in costs within 6 months."</div>
+              <div class="success-author">
+                <div class="success-author-name">Maria Santos</div>
+                <div class="success-author-title">CEO, TechStart Philippines</div>
+              </div>
+            </div>
+            
+            <div class="success-card">
+              <div class="success-quote">"Their expertise in digital transformation helped us expand to 3 new markets in just 12 months. ROI was achieved in 4 months."</div>
+              <div class="success-author">
+                <div class="success-author-name">John Dela Cruz</div>
+                <div class="success-author-title">CTO, Global Solutions Inc.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="success-slide">
+          <div class="success-grid">
+            <div class="success-card">
+              <div class="success-quote">"The automation solutions they implemented saved us over $500K annually. Their team is incredibly professional and responsive."</div>
+              <div class="success-author">
+                <div class="success-author-name">Sarah Johnson</div>
+                <div class="success-author-title">Operations Director, InnovateCorp</div>
+              </div>
+            </div>
+            
+            <div class="success-card">
+              <div class="success-quote">"We increased our customer satisfaction score from 78% to 94% after implementing their customer service platform. Outstanding results!"</div>
+              <div class="success-author">
+                <div class="success-author-name">Michael Chen</div>
+                <div class="success-author-title">VP Customer Experience, ServiceFirst</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="success-slide">
+          <div class="success-grid">
+            <div class="success-card">
+              <div class="success-quote">"Their cloud migration strategy was flawless. We reduced our IT infrastructure costs by 40% while improving performance."</div>
+              <div class="success-author">
+                <div class="success-author-name">Lisa Rodriguez</div>
+                <div class="success-author-title">IT Director, CloudTech Solutions</div>
+              </div>
+            </div>
+            
+            <div class="success-card">
+              <div class="success-quote">"The data analytics platform they built for us revealed insights that increased our revenue by 25% in the first quarter."</div>
+              <div class="success-author">
+                <div class="success-author-name">David Kim</div>
+                <div class="success-author-title">Chief Data Officer, AnalyticsPro</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="success-dots">
+        <span class="dot active" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="cta-section">
+    <div class="cta-container">
+      <h2 class="cta-title animate-on-scroll">Ready to Transform Your Business?</h2>
+      <p class="cta-subtitle animate-on-scroll">Join 500+ companies that trust us with their digital transformation</p>
+      <div class="cta-buttons">
+        <a href="prototype-contact.html" class="cta-primary animate-left">Get Free Consultation</a>
+        <a href="prototype-services.html" class="cta-secondary animate-right">View Our Services</a>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="site-footer">
+    Professionals I.T Solutions, Inc. © 2025 All rights reserved. | <a href="privacy-policy.html" class="footer-link">Privacy Notice</a>.
+  </footer>
+  
+  <div class="cookies-popup" id="cookies-popup">
+    <div class="cookies-card">
+      <div class="cookies-text">This website uses cookies to ensure you get the best experience. <a href="privacy-policy.html" class="footer-link">Learn more</a>.</div>
+      <div class="cookies-btn-row">
+        <button class="cookies-allow-btn" id="cookies-allow-btn">Allow Cookies</button>
+        <button class="cookies-reject-btn" id="cookies-reject-btn">Reject Cookies</button>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Hero carousel logic
+    const heroSlides = [
+      {
+        title: 'DEDICATED ADVANCED TEAM',
+        desc: 'Our collective insight and best practices guarantee high impact business results each time you partner with us.',
+        learnmore: 0
+      },
+      {
+        title: 'WE ARE A SERVICE SOLUTION COMPANY',
+        desc: 'We offer our clients customized service solutions to meet project based consulting needs.',
+        learnmore: 1
+      },
+      {
+        title: 'WE DO THINGS DIFFERENTLY',
+        desc: 'We are a one-stop business solution provider that caters both to IT Services and IT Enabled Back Office Services project based needs.',
+        learnmore: 2
+      }
+    ];
+    let heroIndex = 0;
+    
+    function animateElementsIn() {
+      const titleElement = document.getElementById('hero-title');
+      const descElement = document.getElementById('hero-desc');
+      const buttons = document.querySelectorAll('.hero-learnmore');
+      
+      // Reset all elements
+      titleElement.classList.remove('animate-in');
+      descElement.classList.remove('animate-in');
+      buttons.forEach(btn => btn.classList.remove('animate-in'));
+      
+      // Animate elements in sequence
+      setTimeout(() => titleElement.classList.add('animate-in'), 100);
+      setTimeout(() => descElement.classList.add('animate-in'), 300);
+      setTimeout(() => buttons.forEach(btn => btn.classList.add('animate-in')), 500);
+    }
+    
+    function updateHero() {
+      const titleElement = document.getElementById('hero-title');
+      const descElement = document.getElementById('hero-desc');
+      
+      // Update content
+      titleElement.textContent = heroSlides[heroIndex].title;
+      descElement.textContent = heroSlides[heroIndex].desc;
+      
+      // Update background images
+      const bgSlides = document.querySelectorAll('.hero-bg-placeholder');
+      bgSlides.forEach((slide, index) => {
+        if (index === heroIndex) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+      
+      
+      // Update learn more buttons
+      for (let i = 0; i < 3; i++) {
+        document.getElementById('hero-learnmore-' + i).style.display = (i === heroSlides[heroIndex].learnmore) ? '' : 'none';
+      }
+      
+      // Animate elements
+      animateElementsIn();
+    }
+    
+    
+    // Auto-advance every 5 seconds
+    setInterval(() => {
+      heroIndex = (heroIndex + 1) % heroSlides.length;
+      updateHero();
+    }, 5000);
+    
+    // Mobile menu functionality
+    function setupMobileMenu() {
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (!hamburger || !mobileMenu) return;
+      hamburger.addEventListener('click', function() {
+        const isOpen = mobileMenu.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      // Close menu when a link is clicked
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+      // Optional: Close on outside click or ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Initialize mobile menu
+    setupMobileMenu();
+    
+    // Initialize animations on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      animateElementsIn();
+    });
+
+    // Success Stories Slideshow
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.success-slide');
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlides() {
+      // Hide all slides
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+      
+      // Show current slide
+      slides[slideIndex].classList.add('active');
+      dots[slideIndex].classList.add('active');
+    }
+
+    function currentSlide(n) {
+      slideIndex = n - 1;
+      showSlides();
+    }
+
+    function nextSlide() {
+      slideIndex = (slideIndex + 1) % slides.length;
+      showSlides();
+    }
+
+    // Auto-advance slides every 5 seconds
+    setInterval(nextSlide, 5000);
+
+    // Scroll Animation
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('.animate-on-scroll, .animate-left, .animate-right, .animate-scale, .animate-bounce');
+      
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('animated');
+        }
+      });
+    }
+
+    // Run animation on scroll
+    window.addEventListener('scroll', animateOnScroll);
+    
+    // Run once on page load
+    animateOnScroll();
+
+    // Cookies popup logic
+    function setupCookiesPopup() {
+      const popup = document.getElementById('cookies-popup');
+      const allowBtn = document.getElementById('cookies-allow-btn');
+      const rejectBtn = document.getElementById('cookies-reject-btn');
+      if (!popup || !allowBtn || !rejectBtn) return;
+      
+      // Show popup by default
+      popup.style.display = 'flex';
+      
+      // Check if user has already made a choice
+      if (localStorage.getItem('cookiesAllowed') === 'true' || localStorage.getItem('cookiesAllowed') === 'false') {
+        popup.style.display = 'none';
+        return;
+      }
+      
+      // Show popup after a short delay
+      setTimeout(() => {
+        popup.style.display = 'flex';
+      }, 1000);
+      
+      allowBtn.addEventListener('click', function() {
+        localStorage.setItem('cookiesAllowed', 'true');
+        popup.style.display = 'none';
+      });
+      rejectBtn.addEventListener('click', function() {
+        localStorage.setItem('cookiesAllowed', 'false');
+        popup.style.display = 'none';
+      });
+    }
+
+    // Initialize cookies popup
+    setupCookiesPopup();
+  </script>
+</body>
+</html>

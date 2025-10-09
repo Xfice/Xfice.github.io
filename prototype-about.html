@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional I.T Solution Prototype - About Us</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Navbar styles to match homepage exactly */
+    .floating-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.85);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      z-index: 10;
+      transition: background 0.3s;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 2rem;
+    }
+    .logo {
+      height: 38px;
+      width: auto;
+      display: block;
+      margin-right: 1.2rem;
+      vertical-align: middle;
+    }
+    .logo-link {
+      display: flex;
+      align-items: center;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links li a {
+      color: #05607B;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-links li a:hover, .nav-links li a:focus {
+      background: #f9c846;
+      color: #05607B;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1201;
+    }
+    .hamburger-bar {
+      width: 26px;
+      height: 3.5px;
+      background: #05607B;
+      margin: 3.5px 0;
+      border-radius: 2px;
+      transition: all 0.3s cubic-bezier(.4,2,.6,1);
+    }
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 70px;
+      right: 1.2rem;
+      left: auto;
+      width: 210px;
+      height: auto;
+      background: #fff;
+      z-index: 1200;
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-20px);
+      transition: opacity 0.35s cubic-bezier(.4,2,.6,1), transform 0.35s cubic-bezier(.4,2,.6,1);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 12px;
+      padding: 1.2rem 0.5rem;
+    }
+    .mobile-menu-overlay.open {
+      display: flex !important;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .mobile-nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      align-items: flex-start;
+      width: 100%;
+      gap: 0.5rem;
+    }
+    .mobile-nav-links li {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .mobile-nav-links li a {
+      color: #05607B;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s;
+      padding: 0.2rem 0.5rem;
+      margin: 0;
+      border-radius: 6px;
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+    .mobile-nav-links li a:hover, .mobile-nav-links li a:focus {
+      color: #f7b70b;
+      background: #f6f7fa;
+    }
+    
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+    @media (min-width: 901px) {
+      .mobile-menu-overlay {
+        display: none !important;
+      }
+    }
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: row;
+        gap: 0;
+        padding: 0 1rem;
+        justify-content: space-between;
+      }
+    }
+
+    /* Additional styles for new sections */
+
+    .values-section {
+      background: #f6f7fa;
+      padding: 4rem 0;
+    }
+    
+    .values-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    
+    .values-title {
+      font-size: 3rem;
+      color: #05607B;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+    
+    .values-underline {
+      width: 80px;
+      height: 4px;
+      background: #f7b70b;
+      margin: 0 auto 1rem;
+      border-radius: 2px;
+    }
+    
+    .values-subtitle {
+      font-size: 1.3rem;
+      color: #05607B;
+      margin-bottom: 3rem;
+      font-weight: 500;
+    }
+    
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .value-card {
+      background: #fff;
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border: 2px solid #e0e0e0;
+      transition: all 0.3s ease;
+    }
+    
+    .value-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+      border-color: #f7b70b;
+    }
+    
+    .value-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .value-card-title {
+      font-size: 1.5rem;
+      color: #05607B;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .value-card-desc {
+      font-size: 1.1rem;
+      color: #05607B;
+      line-height: 1.6;
+    }
+
+    /* Mission and Vision Section - COMMENTED OUT */
+    /*
+    .mission-vision-section {
+      background: #fff;
+      padding: 4rem 0;
+    }
+    
+    .mission-vision-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .mission-vision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 2rem;
+    }
+    
+    .mission-card, .vision-card {
+      background: #f6f7fa;
+      padding: 3rem 2.5rem;
+      border-radius: 12px;
+      border-left: 5px solid #f7b70b;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .mission-card:hover, .vision-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+    
+    .mission-title, .vision-title {
+      font-size: 2.2rem;
+      color: #05607B;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .mission-content, .vision-content {
+      font-size: 1.1rem;
+      color: #05607B;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    
+    .vision-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .vision-list li {
+      font-size: 1.1rem;
+      color: #05607B;
+      line-height: 1.7;
+      margin-bottom: 0.8rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    
+    .vision-list li::before {
+      content: "•";
+      color: #f7b70b;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      font-size: 1.2rem;
+    }
+    */
+
+
+    .testimonials-section {
+      background: linear-gradient(135deg, #f9c846 0%, #fad675 100%);
+      padding: 4rem 0;
+    }
+    
+    .testimonials-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    
+    .testimonials-title {
+      font-size: 3rem;
+      color: #05607B;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+    
+    .testimonials-underline {
+      width: 80px;
+      height: 4px;
+      background: #05607B;
+      margin: 0 auto 1rem;
+      border-radius: 2px;
+    }
+    
+    .testimonials-subtitle {
+      font-size: 1.3rem;
+      color: #05607B;
+      margin-bottom: 3rem;
+      font-weight: 500;
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .testimonial-card {
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    
+    .testimonial-quote {
+      font-size: 1.1rem;
+      color: #05607B;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #05607B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    
+    .testimonial-info h5 {
+      font-size: 1.1rem;
+      color: #05607B;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+    
+    .testimonial-info p {
+      font-size: 0.9rem;
+      color: #05607B;
+    }
+
+    .faq-section {
+      background: #f6f7fa;
+      padding: 4rem 0;
+    }
+    
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    
+    .faq-title {
+      font-size: 3rem;
+      color: #05607B;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+    
+    .faq-underline {
+      width: 80px;
+      height: 4px;
+      background: #f7b70b;
+      margin: 0 auto 1rem;
+      border-radius: 2px;
+    }
+    
+    .faq-subtitle {
+      font-size: 1.3rem;
+      color: #05607B;
+      margin-bottom: 3rem;
+      font-weight: 500;
+    }
+    
+    .faq-accordion {
+      text-align: left;
+    }
+    
+    .faq-item {
+      background: #fff;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      border: 1px solid #e0e0e0;
+    }
+    
+    .faq-question {
+      background: #fff;
+      padding: 1.5rem 2rem;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #05607B;
+      border: none;
+      width: 100%;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+    
+    .faq-question:hover {
+      background: #f8f9fa;
+    }
+    
+    .faq-question.active {
+      background: #05607B;
+      color: #fff;
+    }
+    
+    .faq-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-question.active .faq-icon {
+      transform: rotate(180deg);
+    }
+    
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: #f8f9fa;
+    }
+    
+    .faq-answer.active {
+      max-height: 200px;
+    }
+    
+    .faq-answer-content {
+      padding: 1.5rem 2rem;
+      font-size: 1rem;
+      color: #05607B;
+      line-height: 1.6;
+    }
+
+    /* Animation classes */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+    
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .animate-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 0.8s ease;
+    }
+    
+    .animate-left.animated {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .animate-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 0.8s ease;
+    }
+    
+    .animate-right.animated {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .animate-scale {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.8s ease;
+    }
+    
+    .animate-scale.animated {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Cookies Popup Styles */
+    .cookies-popup {
+      position: fixed;
+      bottom: 2.2rem;
+      right: 2.2rem;
+      z-index: 1000;
+      display: flex;
+      align-items: flex-end;
+    }
+    .cookies-card {
+      background: #fff;
+      border: 2.5px solid #05607B;
+      border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      padding: 1.3rem 2.2rem 1.3rem 1.5rem;
+      min-width: 270px;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
+      font-size: 1.05rem;
+      color: #05607B;
+    }
+    .cookies-text {
+      margin-bottom: 0.5rem;
+      color: #05607B;
+      font-size: 1.05rem;
+    }
+    .cookies-btn-row {
+      display: flex;
+      gap: 1rem;
+    }
+    .cookies-allow-btn, .cookies-reject-btn {
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+    }
+    .cookies-allow-btn {
+      background: #f7b70b;
+      color: #05607B;
+    }
+    .cookies-allow-btn:hover, .cookies-allow-btn:focus {
+      background: #ffd700;
+    }
+    .cookies-reject-btn {
+      background: #eee;
+      color: #05607B;
+    }
+    .cookies-reject-btn:hover, .cookies-reject-btn:focus {
+      background: #05607B;
+      color: #fff;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .values-title, .testimonials-title, .faq-title {
+        font-size: 2.2rem;
+      }
+      
+      .values-grid, .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .faq-question {
+        font-size: 1rem;
+        padding: 1.2rem 1.5rem;
+      }
+      
+      .faq-answer-content {
+        padding: 1.2rem 1.5rem;
+      }
+    }
+    
+    @media (max-width: 700px) {
+      .cookies-popup {
+        right: 0.5rem;
+        bottom: 0.5rem;
+      }
+      .cookies-card {
+        min-width: 180px;
+        max-width: 95vw;
+        padding: 1rem 0.7rem 1rem 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="floating-navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="Professional I.T Solution Logo" class="logo"></a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="prototype-about.html">About</a></li>
+          <li><a href="prototype-services.html">Service</a></li>
+          <li><a href="prototype-contact.html">Contact</a></li>
+          <li><a href="prototype-join.html">Join Us</a></li>
+        </ul>
+      </div>
+      <div class="mobile-menu-overlay" id="mobile-menu">
+        <ul class="mobile-nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="prototype-about.html">About</a></li>
+          <li><a href="prototype-services.html">Service</a></li>
+          <li><a href="prototype-contact.html">Contact</a></li>
+          <li><a href="prototype-join.html">Join Us</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="section about-section" id="about">
+      <h2>ABOUT US</h2>
+      <p><strong>Professional I.T. Solutions, Inc. (PITS)</strong>, established in 1986, is a young and dynamic company that focuses on Project Based Services. Our service includes screening, skills assessment, consultant matching, team monitoring, and client account management.</p>
+    </div>
+    <div class="section-divider"></div>
+    <div class="about-steps-row">
+        <div class="step">
+          <img src="assets/handshake.png" alt="Consult Icon" class="step-icon" />
+          <h3>CONSULT</h3>
+          <p>Let's sit down and discuss your challenges.</p>
+        </div>
+        <div class="step">
+          <img src="assets/idea.png" alt="Create Icon" class="step-icon" />
+          <h3>CREATE</h3>
+          <p>We will create and customize the best service solutions.</p>
+        </div>
+        <div class="step">
+          <img src="assets/checked-2--v1.png" alt="Match Icon" class="step-icon" />
+          <h3>MATCH</h3>
+          <p>We select, match and deploy the most qualified consultants for your requirements.</p>
+        </div>
+      </div>
+    <div class="section-divider"></div>
+    <div class="about-img-crop">
+      <div class="about-img-cropper">
+        <img src="assets/about-img1-new.jpg" alt="About Us Graphic" class="about-img-cropped" />
+      </div>
+    </div>
+    <p class="about-highlight">We offer business solutions that provide flexibility in seasonal and project based service needs.</p>
+    <div class="section-divider"></div>
+    <div class="about-split-section">
+      <div class="about-split-left">
+        <h2>SERVICE</h2>
+        <p>We place importance in forging proactive and goal-oriented partnerships.</p>
+        <h2>EXCELLENCE</h2>
+        <p>We continuously develop ourselves to prepare for the challenges ahead and to be able to go beyond expectations.</p>
+        <h2>PROFESSIONALISM</h2>
+        <p>We are dedicated to being a trusted partner to clients and employees by maintaining relationships built on commitment, honesty, integrity, and respect.</p>
+        <a href="prototype-contact.html" class="about-split-btn">CONTACT US FOR MORE INFO</a>
+      </div>
+      <div class="about-split-right">
+        <img src="assets/about-img2.jpg" alt="About Us 2" class="about-split-img" />
+      </div>
+    </div>
+
+
+
+    <!-- Company Values Section -->
+    <section class="values-section">
+      <div class="values-container">
+        <h2 class="values-title animate-on-scroll">Our Core Values</h2>
+        <div class="values-underline animate-on-scroll"></div>
+        <p class="values-subtitle animate-on-scroll">The principles that guide everything we do</p>
+        
+        <div class="values-grid">
+          <div class="value-card animate-left">
+            <div class="value-icon">🤝</div>
+            <h3 class="value-card-title">Integrity</h3>
+            <p class="value-card-desc">We conduct business with honesty, transparency, and ethical practices. Our word is our bond, and we build lasting relationships based on trust.</p>
+          </div>
+          
+          <div class="value-card animate-scale">
+            <div class="value-icon">💡</div>
+            <h3 class="value-card-title">Innovation</h3>
+            <p class="value-card-desc">We continuously explore new technologies and methodologies to deliver cutting-edge solutions that keep our clients ahead of the competition.</p>
+          </div>
+          
+          <div class="value-card animate-right">
+            <div class="value-icon">🎯</div>
+            <h3 class="value-card-title">Excellence</h3>
+            <p class="value-card-desc">We strive for excellence in every project, maintaining the highest standards of quality and delivering results that exceed expectations.</p>
+          </div>
+          
+          <div class="value-card animate-left">
+            <div class="value-icon">👥</div>
+            <h3 class="value-card-title">Collaboration</h3>
+            <p class="value-card-desc">We believe in the power of teamwork and partnership, working closely with clients and team members to achieve shared goals.</p>
+          </div>
+          
+          <div class="value-card animate-scale">
+            <div class="value-icon">🚀</div>
+            <h3 class="value-card-title">Growth</h3>
+            <p class="value-card-desc">We are committed to continuous learning and development, both for our team and our clients, fostering an environment of growth and improvement.</p>
+          </div>
+          
+          <div class="value-card animate-right">
+            <div class="value-icon">❤️</div>
+            <h3 class="value-card-title">Client Focus</h3>
+            <p class="value-card-desc">Our clients' success is our success. We put their needs first and work tirelessly to deliver solutions that drive their business forward.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission and Vision Section - REMOVED AS PER INSTRUCTIONS -->
+    <!-- This section has been commented out to remove Mission and Vision -->
+
+    <!-- Client Testimonials Section -->
+    <section class="testimonials-section">
+      <div class="testimonials-container">
+        <h2 class="testimonials-title animate-on-scroll">What Our Clients Say</h2>
+        <div class="testimonials-underline animate-on-scroll"></div>
+        <p class="testimonials-subtitle animate-on-scroll">Real feedback from satisfied clients</p>
+        
+        <div class="testimonials-grid">
+          <div class="testimonial-card animate-left">
+            <div class="testimonial-quote">"Professional I.T Solution transformed our entire operation. Their expertise in digital transformation helped us increase efficiency by 50% and reduce costs by 35% within 6 months."</div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">MS</div>
+              <div class="testimonial-info">
+                <h5>Maria Santos</h5>
+                <p>CEO, TechStart Philippines</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-card animate-right">
+            <div class="testimonial-quote">"The team at PITS is incredibly professional and responsive. Their cloud migration strategy was flawless and saved us 40% on infrastructure costs while improving performance."</div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">JC</div>
+              <div class="testimonial-info">
+                <h5>John Cruz</h5>
+                <p>CTO, Global Solutions Inc.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-card animate-left">
+            <div class="testimonial-quote">"Their custom software development expertise helped us create a solution that perfectly fits our business needs. The ROI was achieved in just 4 months."</div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">SJ</div>
+              <div class="testimonial-info">
+                <h5>Sarah Johnson</h5>
+                <p>Operations Director, InnovateCorp</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-card animate-right">
+            <div class="testimonial-quote">"The cybersecurity solutions they implemented gave us peace of mind. Their team is knowledgeable, professional, and always available when we need support."</div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">MC</div>
+              <div class="testimonial-info">
+                <h5>Michael Chen</h5>
+                <p>IT Manager, SecureTech Solutions</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="faq-container">
+        <h2 class="faq-title animate-on-scroll">Frequently Asked Questions</h2>
+        <div class="faq-underline animate-on-scroll"></div>
+        <p class="faq-subtitle animate-on-scroll">Get answers to common questions about our services</p>
+        
+        <div class="faq-accordion">
+          <div class="faq-item">
+            <button class="faq-question">
+              What types of IT services do you offer?
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                We offer a comprehensive range of IT services including digital transformation, cloud solutions, custom software development, IT consulting, cybersecurity, data analytics, and project-based consulting services. Our team specializes in both IT Services and IT Enabled Back Office Services.
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question">
+              How do you ensure the quality of your consultants?
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                We have a rigorous screening and skills assessment process. We carefully evaluate each consultant's technical expertise, experience, and cultural fit before matching them with client requirements. Our team monitoring and client account management ensure ongoing quality assurance.
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question">
+              What is your typical project timeline?
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Project timelines vary depending on scope and complexity. Small projects typically take 2-4 weeks, medium projects 1-3 months, and large enterprise solutions 3-12 months. We provide detailed project plans and regular updates to ensure transparency throughout the process.
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question">
+              Do you provide ongoing support after project completion?
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Yes, we offer comprehensive post-implementation support including maintenance, updates, training, and technical support. We believe in building long-term partnerships and ensuring our solutions continue to deliver value long after the initial project is complete.
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question">
+              How do you handle data security and confidentiality?
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                We take data security very seriously. All our consultants sign confidentiality agreements, and we implement industry-standard security protocols. We can also work with your existing security policies and provide additional security measures as needed.
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question">
+              What makes PITS different from other IT companies?
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Our unique approach combines project-based flexibility with deep technical expertise. We focus on building proactive partnerships, delivering measurable results, and providing personalized solutions. Our young, dynamic team brings fresh perspectives while maintaining professional standards and proven methodologies.
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question">
+              How do I get started with your services?
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Getting started is easy! Simply contact us through our website or call us directly. We'll schedule a consultation to discuss your needs, challenges, and goals. From there, we'll create a customized proposal and project plan tailored to your specific requirements.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    Professionals I.T Solutions, Inc. © 2025 All rights reserved. | <a href="privacy-policy.html" class="footer-link">Privacy Notice</a>.
+  </footer>
+  <div class="cookies-popup" id="cookies-popup">
+    <div class="cookies-card">
+      <div class="cookies-text">This website uses cookies to ensure you get the best experience. <a href="privacy-policy.html" class="footer-link">Learn more</a>.</div>
+      <div class="cookies-btn-row">
+        <button class="cookies-allow-btn" id="cookies-allow-btn">Allow Cookies</button>
+        <button class="cookies-reject-btn" id="cookies-reject-btn">Reject Cookies</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    // FAQ Accordion functionality
+    function setupFAQAccordion() {
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+          const answer = question.nextElementSibling;
+          const isActive = question.classList.contains('active');
+          
+          // Close all other FAQ items
+          faqQuestions.forEach(q => {
+            q.classList.remove('active');
+            q.nextElementSibling.classList.remove('active');
+          });
+          
+          // Toggle current FAQ item
+          if (!isActive) {
+            question.classList.add('active');
+            answer.classList.add('active');
+          }
+        });
+      });
+    }
+
+    // Scroll Animation
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('.animate-on-scroll, .animate-left, .animate-right, .animate-scale');
+      
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('animated');
+        }
+      });
+    }
+
+    // Cookies popup logic
+    function setupCookiesPopup() {
+      const popup = document.getElementById('cookies-popup');
+      const allowBtn = document.getElementById('cookies-allow-btn');
+      const rejectBtn = document.getElementById('cookies-reject-btn');
+      if (!popup || !allowBtn || !rejectBtn) return;
+      
+      // Show popup by default
+      popup.style.display = 'flex';
+      
+      // Check if user has already made a choice
+      if (localStorage.getItem('cookiesAllowed') === 'true' || localStorage.getItem('cookiesAllowed') === 'false') {
+        popup.style.display = 'none';
+        return;
+      }
+      
+      // Show popup after a short delay
+      setTimeout(() => {
+        popup.style.display = 'flex';
+      }, 1000);
+      
+      allowBtn.addEventListener('click', function() {
+        localStorage.setItem('cookiesAllowed', 'true');
+        popup.style.display = 'none';
+      });
+      rejectBtn.addEventListener('click', function() {
+        localStorage.setItem('cookiesAllowed', 'false');
+        popup.style.display = 'none';
+      });
+    }
+
+    // Initialize all functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // The setupMobileMenu function is called automatically by script.js
+      setupFAQAccordion();
+      animateOnScroll();
+      setupCookiesPopup();
+    });
+
+    // Run animation on scroll
+    window.addEventListener('scroll', animateOnScroll);
+  </script>
+</body>
+</html>

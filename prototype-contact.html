@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional I.T Solution - Contact Us</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Enhanced Contact Page Effects */
+    .contact-content {
+      /* Removed text animation - now stable */
+    }
+
+    /* All animations removed - static display */
+    .contact-content {
+      opacity: 1 !important;
+    }
+    
+    .contact-info-item {
+      opacity: 1 !important;
+    }
+    
+    .contact-map-embed {
+      opacity: 1 !important;
+    }
+    
+    /* Override all main CSS animations - completely static */
+    .contact-content {
+      animation: none !important;
+      transform: none !important;
+    }
+    
+    .contact-content.in-view {
+      animation: none !important;
+      transform: none !important;
+    }
+    
+    .contact-info-item {
+      animation: none !important;
+      transform: none !important;
+    }
+    
+    .contact-info-item.address-bounce {
+      animation: none !important;
+      transform: none !important;
+    }
+    
+    .contact-info-item.address-bounce.in-view {
+      animation: none !important;
+      transform: none !important;
+    }
+
+    /* All hover animations removed - completely static */
+    
+    /* Cookies Popup Styles */
+    .cookies-popup {
+      position: fixed;
+      bottom: 2.2rem;
+      right: 2.2rem;
+      z-index: 1000;
+      display: flex;
+      align-items: flex-end;
+    }
+    .cookies-card {
+      background: #fff;
+      border: 2.5px solid #05607B;
+      border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      padding: 1.3rem 2.2rem 1.3rem 1.5rem;
+      min-width: 270px;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
+      font-size: 1.05rem;
+      color: #05607B;
+    }
+    .cookies-text {
+      margin-bottom: 0.5rem;
+      color: #05607B;
+      font-size: 1.05rem;
+    }
+    .cookies-btn-row {
+      display: flex;
+      gap: 1rem;
+    }
+    .cookies-allow-btn, .cookies-reject-btn {
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+    }
+    .cookies-allow-btn {
+      background: #f7b70b;
+      color: #05607B;
+    }
+    .cookies-allow-btn:hover, .cookies-allow-btn:focus {
+      background: #ffd700;
+    }
+    .cookies-reject-btn {
+      background: #eee;
+      color: #05607B;
+    }
+    .cookies-reject-btn:hover, .cookies-reject-btn:focus {
+      background: #05607B;
+      color: #fff;
+    }
+    
+    @media (max-width: 700px) {
+      .cookies-popup {
+        right: 0.5rem;
+        bottom: 0.5rem;
+      }
+      .cookies-card {
+        min-width: 180px;
+        max-width: 95vw;
+        padding: 1rem 0.7rem 1rem 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="floating-navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="Professional I.T Solution Logo" class="logo"></a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="prototype-about.html">About</a></li>
+          <li><a href="prototype-services.html">Service</a></li>
+          <li><a href="prototype-contact.html">Contact</a></li>
+          <li><a href="prototype-join.html">Join Us</a></li>
+        </ul>
+      </div>
+      <div class="mobile-menu-overlay" id="mobile-menu">
+        <ul class="mobile-nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="prototype-about.html">About</a></li>
+          <li><a href="prototype-services.html">Service</a></li>
+          <li><a href="prototype-contact.html">Contact</a></li>
+          <li><a href="prototype-join.html">Join Us</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="section" id="contact">
+      <div class="contact-content">
+        <h2 class="contact-title">Talk to us!</h2>
+        <div class="contact-title-underline"></div>
+        <div class="contact-sub">Let us know how we can help.</div>
+        <div class="contact-info-group">
+          <div class="contact-info-item">
+            <img src="assets/mail.png" alt="Email" class="contact-icon" />
+            <div class="contact-info-label">info@pitsph.com</div>
+          </div>
+          <div class="contact-info-item">
+            <img src="assets/iphone.png" alt="Mobile" class="contact-icon" />
+            <div class="contact-info-label">0917-8844595</div>
+          </div>
+          <div class="contact-info-item">
+            <img src="assets/telephone.png" alt="Telephone" class="contact-icon" />
+            <div class="contact-info-label">+632 71160540</div>
+          </div>
+           <div class="contact-info-item">
+            <img src="assets/map-pin.png" alt="Address" class="contact-icon" />
+            <div class="contact-info-label">Ground floor, Arcadia Bldg. 860 Quezon Ave. Brgy. Paligsahan 1103, Quezon City</div>
+          </div>
+        </div>
+        <div class="contact-map-embed" style="margin-top:2rem;">
+          <iframe src="https://www.google.com/maps?q=Ground+floor,+Arcadia+Bldg.+860+Quezon+Ave.+Brgy.+Paligsahan+1103,+Quezon+City&output=embed" width="100%" height="280" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    Professionals I.T Solutions, Inc. © 2025 All rights reserved. | <a href="privacy-policy.html" class="footer-link">Privacy Notice</a>.
+  </footer>
+  <div class="cookies-popup" id="cookies-popup">
+    <div class="cookies-card">
+      <div class="cookies-text">This website uses cookies to ensure you get the best experience. <a href="privacy-policy.html" class="footer-link">Learn more</a>.</div>
+      <div class="cookies-btn-row">
+        <button class="cookies-allow-btn" id="cookies-allow-btn">Allow Cookies</button>
+        <button class="cookies-reject-btn" id="cookies-reject-btn">Reject Cookies</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    // Cookies popup logic
+    function setupCookiesPopup() {
+      const popup = document.getElementById('cookies-popup');
+      const allowBtn = document.getElementById('cookies-allow-btn');
+      const rejectBtn = document.getElementById('cookies-reject-btn');
+      if (!popup || !allowBtn || !rejectBtn) return;
+      
+      // Show popup by default
+      popup.style.display = 'flex';
+      
+      // Check if user has already made a choice
+      if (localStorage.getItem('cookiesAllowed') === 'true' || localStorage.getItem('cookiesAllowed') === 'false') {
+        popup.style.display = 'none';
+        return;
+      }
+      
+      // Show popup after a short delay
+      setTimeout(() => {
+        popup.style.display = 'flex';
+      }, 1000);
+      
+      allowBtn.addEventListener('click', function() {
+        localStorage.setItem('cookiesAllowed', 'true');
+        popup.style.display = 'none';
+      });
+      rejectBtn.addEventListener('click', function() {
+        localStorage.setItem('cookiesAllowed', 'false');
+        popup.style.display = 'none';
+      });
+    }
+
+    // All animations removed - no JavaScript animations
+
+    document.addEventListener('DOMContentLoaded', function() {
+      setupCookiesPopup();
+      // The setupMobileMenu function is called automatically by script.js
+    });
+  </script>
+</body>
+</html>
+

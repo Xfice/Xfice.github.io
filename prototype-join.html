@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Us - Professional I.T Solution</title>
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #fff;
+    }
+    .floating-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.85);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      z-index: 10;
+      transition: background 0.3s;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 2rem;
+    }
+    .logo {
+      height: 38px;
+      width: auto;
+      display: block;
+      margin-right: 1.2rem;
+      vertical-align: middle;
+    }
+    .logo-link {
+      display: flex;
+      align-items: center;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links li a {
+      color: #05607B;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-links li a:hover, .nav-links li a:focus {
+      background: #f9c846;
+      color: #05607B;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1201;
+    }
+    .hamburger-bar {
+      width: 26px;
+      height: 3.5px;
+      background: #05607B;
+      margin: 3.5px 0;
+      border-radius: 2px;
+      transition: all 0.3s cubic-bezier(.4,2,.6,1);
+    }
+    .mobile-menu-overlay {
+      position: absolute;
+      top: 60px;
+      right: 1.2rem;
+      left: auto;
+      width: 210px;
+      height: auto;
+      background: #fff;
+      z-index: 1200;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-20px);
+      transition: opacity 0.35s cubic-bezier(.4,2,.6,1), transform 0.35s cubic-bezier(.4,2,.6,1);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 12px;
+      padding: 1.2rem 0.5rem;
+    }
+    .mobile-menu-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .mobile-nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      gap: 0.5rem;
+    }
+    .mobile-nav-links li {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .mobile-nav-links li a {
+      color: #05607B;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s;
+      padding: 0.2rem 0.5rem;
+      margin: 0;
+      border-radius: 6px;
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+    .mobile-nav-links li a:hover, .mobile-nav-links li a:focus {
+      color: #f7b70b;
+      background: #f6f7fa;
+    }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+    @media (min-width: 901px) {
+      .mobile-menu-overlay { display: none !important; }
+    }
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: row;
+        gap: 0;
+        padding: 0 1rem;
+        justify-content: space-between;
+      }
+    }
+
+    /* Hero/title section */
+    .section {
+      width: 100%;
+      min-height: 40vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 0 0.5rem 0;
+      box-sizing: border-box;
+      background: #fff;
+    }
+    #join { background: #f6f7fa; }
+    .services-title { /* reuse look */
+      font-size: 4rem;
+      color: #05607B;
+      font-weight: 800;
+      text-align: center;
+      margin-top: 0.2rem;
+      margin-bottom: 0.1rem;
+      letter-spacing: 1px;
+    }
+    .services-underline {
+      width: 80px;
+      height: 4px;
+      background: #f7b70b;
+      margin: 0 auto 0.3rem auto;
+      border-radius: 2px;
+    }
+    .services-sub {
+      text-align: center;
+      font-size: 1.15rem;
+      color: #05607B;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-divider {
+      width: 100%;
+      max-width: 900px;
+      height: 0;
+      border: none;
+      border-top: 2.5px solid #e0e0e0;
+      margin: 1.5rem auto 1.5rem auto;
+      opacity: 0.85;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    /* Alternating image/content sections (same pattern as services) */
+         .service-section {
+       display: flex;
+       flex-direction: row;
+       align-items: stretch;
+       justify-content: center;
+       width: 100%;
+       max-width: 100%;
+       min-height: 550px;
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+       background: #fff;
+       gap: 0;
+     }
+    .service-section:nth-child(even) { background: #f6f7fa; }
+    .service-section:nth-child(odd) { background: #fff; }
+                   .service-content {
+        flex: 1 1 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        box-sizing: border-box;
+        border: 3px solid #f7b70b;
+        border-radius: 8px;
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+        background: #fff;
+      }
+                                                                                                                                                               .service-section:nth-child(odd) .service-content {
+         order: 2;
+       }
+                                                                                                                                                               .service-section:nth-child(even) .service-content {
+         order: 1;
+       }
+                   .service-title {
+        font-size: 2.4rem;
+        color: #05607B;
+        margin-bottom: 0.8rem;
+        margin-top: 0;
+        letter-spacing: 0.5px;
+        font-weight: 800;
+      }
+                   .service-description {
+        font-size: 1.1rem;
+        color: #05607B;
+        margin-bottom: 0;
+        margin-top: 0;
+        line-height: 1.4;
+      }
+    .service-image-container {
+      flex: 1 1 50%;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      padding: 0;
+      margin: 0;
+    }
+    .service-section:nth-child(odd) .service-image-container { order: 1; }
+    .service-section:nth-child(even) .service-image-container { order: 2; }
+         .service-image {
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+       object-position: center;
+       opacity: 0;
+       transform: translateX(-80px);
+       transition: none;
+       border-radius: 12px;
+     }
+    .service-section:nth-child(odd) .service-image { transform: translateX(-80px); }
+    .service-section:nth-child(even) .service-image { transform: translateX(80px); }
+    .service-section:nth-child(odd) .service-image.in-view { animation: slideInLeft 1.2s cubic-bezier(.4,2,.6,1) forwards; }
+    .service-section:nth-child(even) .service-image.in-view { animation: slideInRight 1.2s cubic-bezier(.4,2,.6,1) forwards; }
+    .service-content.in-view { animation: slideInUp 1.2s cubic-bezier(.4,2,.6,1) forwards; }
+
+    @keyframes slideInLeft { from { opacity: 0; transform: translateX(-80px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInRight { from { opacity: 0; transform: translateX(80px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInUp { from { opacity: 0; transform: translateY(80px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Join form */
+    .join-form-wrap {
+      width: 100%;
+      background: #f6f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 1rem 4rem 1rem;
+      box-sizing: border-box;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    .join-form-card {
+      width: 100%;
+      max-width: 760px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      border: 3px solid #05607B;
+      padding: 2rem 1.5rem 1.8rem 1.5rem;
+      opacity: 0;
+      box-sizing: border-box;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+    .join-form-card.in-view { animation: slideInUp 1.2s cubic-bezier(.4,2,.6,1) forwards; }
+    .join-title {
+      font-size: 2.2rem;
+      color: #05607B;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+      margin-top: 0.2rem;
+      text-align: center;
+    }
+    .join-underline {
+      width: 80px;
+      height: 4px;
+      background: #f7b70b;
+      margin: 0.5rem auto 1.2rem auto;
+      border-radius: 2px;
+    }
+    .join-sub {
+      text-align: center;
+      font-size: 1.05rem;
+      color: #05607B;
+      margin-bottom: 1.5rem;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem 1.2rem;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .form-row { display: flex; flex-direction: column; gap: 0.4rem; }
+    label { font-weight: 600; color: #05607B; }
+    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+      padding: 0.8rem 0.9rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #05607B;
+      box-shadow: 0 0 0 4px rgba(5,96,123,0.08);
+    }
+    textarea { min-height: 120px; resize: vertical; grid-column: 1 / -1; }
+    .form-actions { display: flex; justify-content: center; margin-top: 0.8rem; }
+    .submit-btn {
+      background: #f9c846;
+      color: #05607B;
+      font-weight: bold;
+      font-size: 1.05rem;
+      padding: 0.8rem 2rem;
+      border-radius: 24px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover, .submit-btn:focus { background: #ffd700; }
+    .form-note { text-align: center; color: #05607B; font-size: 0.95rem; margin-top: 0.6rem; }
+    .success-banner {
+      display: none;
+      margin: 0.8rem auto 0 auto;
+      text-align: center;
+      color: #05607B;
+      font-weight: 700;
+    }
+    @media (max-width: 800px) { .form-grid { grid-template-columns: 1fr; } }
+
+    /* Footer */
+    .site-footer {
+      width: 100%;
+      background: #fff;
+      color: #05607B;
+      font-size: 1rem;
+      text-align: center;
+      padding: 0.7rem 0 0.7rem 0;
+      border-top: 1.5px solid #eee;
+      letter-spacing: 0.2px;
+      z-index: 10;
+    }
+    .footer-link { color: #05607B; text-decoration: underline; font-weight: 500; }
+
+    /* Responsive tweaks for sections */
+    @media (max-width: 900px) {
+      .service-section { flex-direction: column; min-height: 0; }
+      .service-content, .service-image-container {
+        flex: 1 1 100%;
+        padding: 2rem 1rem;
+        min-width: 0;
+        min-height: 0;
+        order: unset !important;
+      }
+      .service-image { width: 100%; height: 300px; object-fit: cover; transform: translateY(80px) !important; }
+      .service-image.in-view { animation: slideInUp 1.2s cubic-bezier(.4,2,.6,1) forwards !important; }
+      .service-title { font-size: 2.6rem; }
+      .service-description { font-size: 1.3rem; }
+    }
+    @media (max-width: 600px) {
+      .section { min-height: 60vh; padding-bottom: 2rem; }
+      .service-content { padding: 1.5rem 1rem; }
+      .service-title { font-size: 2.2rem; }
+      .service-description { font-size: 1.2rem; }
+    }
+
+    /* Enhanced Mobile Responsive Design */
+    @media (max-width: 1024px) {
+      .nav-container {
+        padding: 0.7rem 1.5rem;
+      }
+      
+      .hero-content {
+        padding: 0 1.5rem;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .section {
+        padding: 3rem 1.5rem;
+      }
+      
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 0.7rem 1rem;
+      }
+      
+      .hero-content {
+        padding: 0 1rem;
+        text-align: center;
+      }
+      
+      .hero-title {
+        font-size: 2rem;
+        line-height: 1.2;
+      }
+      
+      .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+      }
+      
+      .section {
+        padding: 2rem 1rem;
+        min-height: 50vh;
+      }
+      
+      .service-section {
+        flex-direction: column;
+        text-align: center;
+        min-height: auto;
+        padding: 2rem 0;
+        width: 100%;
+        margin: 0;
+      }
+      
+      .service-content {
+        width: 100%;
+        padding: 2rem 1rem;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      
+      .service-title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+      
+      .service-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+      
+      .service-image-container {
+        width: 100%;
+        padding: 0 1rem;
+        margin: 0;
+        box-sizing: border-box;
+        order: 2;
+      }
+      
+      .service-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 8px;
+        transform: none !important;
+      }
+      
+      .form-container {
+        padding: 1.5rem;
+        margin: 1rem;
+      }
+      
+      .form-title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+      
+      .form-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .form-group {
+        margin-bottom: 1rem;
+      }
+      
+      .form-label {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .form-input,
+      .form-textarea,
+      .form-select {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+      }
+      
+      .form-textarea {
+        min-height: 120px;
+      }
+      
+      .submit-button {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-container {
+        padding: 0.5rem 0.8rem;
+      }
+      
+      .logo {
+        height: 32px;
+      }
+      
+      .hero-content {
+        padding: 0 0.8rem;
+      }
+      
+      .hero-title {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1.2rem;
+      }
+      
+      .cta-button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+      }
+      
+      .section {
+        padding: 1.5rem 0.8rem;
+        min-height: 40vh;
+      }
+      
+      .service-section {
+        padding: 1.5rem 0;
+        width: 100%;
+        margin: 0;
+      }
+      
+      .service-content {
+        padding: 1.5rem 0.8rem;
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      
+      .service-title {
+        font-size: 1.5rem;
+      }
+      
+      .service-description {
+        font-size: 0.9rem;
+      }
+      
+      .service-image-container {
+        padding: 0 0.8rem;
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      
+      .service-image {
+        height: 200px;
+      }
+      
+      .form-container {
+        padding: 1.2rem;
+        margin: 0.8rem;
+      }
+      
+      .form-title {
+        font-size: 1.5rem;
+      }
+      
+      .form-subtitle {
+        font-size: 0.9rem;
+      }
+      
+      .form-label {
+        font-size: 0.85rem;
+      }
+      
+      .form-input,
+      .form-textarea,
+      .form-select {
+        padding: 0.7rem;
+        font-size: 0.85rem;
+      }
+      
+      .form-textarea {
+        min-height: 100px;
+      }
+      
+      .submit-button {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.85rem;
+      }
+    }
+    
+    /* File upload styles */
+    input[type="file"] {
+      width: 100%;
+      max-width: 100%;
+      padding: 0.8rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 1rem;
+      color: #05607B;
+      cursor: pointer;
+      transition: border-color 0.3s ease;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    
+    input[type="file"]:hover {
+      border-color: #05607B;
+    }
+    
+    input[type="file"]:focus {
+      outline: none;
+      border-color: #05607B;
+      box-shadow: 0 0 0 3px rgba(5, 96, 123, 0.1);
+    }
+    
+    .file-preview {
+      margin-top: 0.5rem;
+      padding: 0.8rem;
+      background: #f8f9fa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .file-name {
+      color: #05607B;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    
+    .remove-file {
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
+    
+    .remove-file:hover {
+      background: #c82333;
+    }
+    
+    /* Thank you modal styles */
+    .thank-you-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2000;
+    }
+    
+    .modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      max-width: 400px;
+      width: 90%;
+      max-height: 90vh;
+      overflow: hidden;
+    }
+    
+    .modal-header {
+      padding: 1.5rem 1.5rem 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .modal-header h3 {
+      color: #05607B;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #666;
+      cursor: pointer;
+      padding: 0;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: background-color 0.3s ease;
+    }
+    
+    .modal-close:hover {
+      background: #f0f0f0;
+    }
+    
+    .modal-body {
+      padding: 1rem 1.5rem;
+    }
+    
+    .modal-body p {
+      color: #333;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+    
+    .modal-footer {
+      padding: 0 1.5rem 1.5rem 1.5rem;
+      text-align: right;
+    }
+    
+    .modal-ok-btn {
+      background: #05607B;
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .modal-ok-btn:hover {
+      background: #044a5f;
+    }
+    
+    /* Cookies Popup Styles */
+    .cookies-popup {
+      position: fixed;
+      bottom: 2.2rem;
+      right: 2.2rem;
+      z-index: 1000;
+      display: flex;
+      align-items: flex-end;
+    }
+    .cookies-card {
+      background: #fff;
+      border: 2.5px solid #05607B;
+      border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      padding: 1.3rem 2.2rem 1.3rem 1.5rem;
+      min-width: 270px;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
+      font-size: 1.05rem;
+      color: #05607B;
+    }
+    .cookies-text {
+      margin-bottom: 0.5rem;
+      color: #05607B;
+      font-size: 1.05rem;
+    }
+    .cookies-btn-row {
+      display: flex;
+      gap: 1rem;
+    }
+    .cookies-allow-btn, .cookies-reject-btn {
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+    }
+    .cookies-allow-btn {
+      background: #f7b70b;
+      color: #05607B;
+    }
+    .cookies-allow-btn:hover, .cookies-allow-btn:focus {
+      background: #ffd700;
+    }
+    .cookies-reject-btn {
+      background: #eee;
+      color: #05607B;
+    }
+    .cookies-reject-btn:hover, .cookies-reject-btn:focus {
+      background: #05607B;
+      color: #fff;
+    }
+    
+    @media (max-width: 700px) {
+      .cookies-popup {
+        right: 0.5rem;
+        bottom: 0.5rem;
+      }
+      .cookies-card {
+        min-width: 180px;
+        max-width: 95vw;
+        padding: 1rem 0.7rem 1rem 0.7rem;
+      }
+    }
+  </style>
+  <meta name="description" content="Join Professional I.T Solution – send your details to become part of our team.">
+  <meta name="keywords" content="Join Us, Careers, Apply, Professional IT Solution">
+  <meta name="author" content="Professional I.T Solution">
+</head>
+<body>
+  <header>
+    <nav class="floating-navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="Professional I.T Solution Logo" class="logo"></a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="prototype-about.html">About</a></li>
+          <li><a href="prototype-services.html">Service</a></li>
+          <li><a href="prototype-contact.html">Contact</a></li>
+          <li><a href="prototype-join.html">Join Us</a></li>
+        </ul>
+      </div>
+      <div class="mobile-menu-overlay" id="mobile-menu">
+        <ul class="mobile-nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="prototype-about.html">About</a></li>
+          <li><a href="prototype-services.html">Service</a></li>
+          <li><a href="prototype-contact.html">Contact</a></li>
+          <li><a href="prototype-join.html">Join Us</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="section" id="join">
+      <h2 class="services-title">JOIN OUR TEAM</h2>
+      <div class="services-underline"></div>
+      <div class="services-sub">We're always looking for talented people. Learn about us, then send your details below.</div>
+    </div>
+
+    <div class="section-divider"></div>
+
+         <!-- Alternating sections -->
+     <div class="service-section">
+       <div class="service-content">
+         <h2 class="service-title">Work With Top Talent</h2>
+         <p class="service-description">Collaborate with a dedicated advanced team delivering impactful solutions across web, mobile, and enterprise platforms.</p>
+       </div>
+       <div class="service-image-container">
+         <img src="assets/teamwork.jpg" alt="Work With Top Talent" class="service-image" />
+       </div>
+     </div>
+
+     <div class="service-section">
+       <div class="service-content">
+         <h2 class="service-title">Make Business Impact</h2>
+         <p class="service-description">Build solutions that matter—from process automation to client success initiatives—shaping outcomes for our partners.</p>
+       </div>
+       <div class="service-image-container">
+         <img src="assets/business-impact.jpg" alt="Make Business Impact" class="service-image" />
+       </div>
+     </div>
+
+     <div class="service-section">
+       <div class="service-content">
+         <h2 class="service-title">Grow Your Career</h2>
+         <p class="service-description">Learn, mentor, and evolve with continuous exposure to modern stacks, best practices, and supportive leadership.</p>
+       </div>
+       <div class="service-image-container">
+         <img src="assets/grow-career.jpg" alt="Grow Your Career" class="service-image" />
+       </div>
+     </div>
+
+    <!-- Join form at bottom -->
+    <section class="join-form-wrap" id="apply">
+      <div class="join-form-card" id="join-form-card">
+        <h3 class="join-title">Send Your Details</h3>
+        <div class="join-underline"></div>
+        <div class="join-sub">Submit your information and we'll get in touch if there's a match.</div>
+        <form id="join-form" novalidate>
+          <div class="form-grid">
+            <div class="form-row">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" name="fullName" placeholder="Juan Dela Cruz" required>
+            </div>
+            <div class="form-row">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-row">
+              <label for="phone">Phone *</label>
+              <input type="tel" id="phone" name="phone" placeholder="0917 000 0000" required>
+            </div>
+            <div class="form-row">
+              <label for="role">Role of Interest *</label>
+              <select id="role" name="role" required>
+                <option value="" selected disabled>Select a role</option>
+                <option>Software Engineer</option>
+                <option>QA Engineer</option>
+                <option>Project Manager</option>
+                <option>UI/UX Designer</option>
+                <option>Back Office Specialist</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-row" style="grid-column: 1 / -1;">
+              <label for="message">Short Introduction *</label>
+              <textarea id="message" name="message" placeholder="Tell us briefly about your experience and interests..." required></textarea>
+            </div>
+            <div class="form-row" style="grid-column: 1 / -1;">
+              <label for="resume">Resume/CV *</label>
+              <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+              <div class="file-preview" id="file-preview" style="display: none;">
+                <span class="file-name" id="file-name"></span>
+                <button type="button" class="remove-file" id="remove-file">×</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="submit-btn">Submit</button>
+          </div>
+          <div class="form-note">We respect your privacy. Your details are kept confidential.</div>
+          <div class="success-banner" id="success-banner">Thanks! Your details were submitted.</div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    Professionals I.T Solutions, Inc. © 2025 All rights reserved. | <a href="privacy-policy.html" class="footer-link">Privacy Notice</a>.
+  </footer>
+  
+  <!-- Thank you popup modal -->
+  <div class="thank-you-modal" id="thank-you-modal" style="display: none;">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Thank You!</h3>
+        <button class="modal-close" id="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Your details were submitted successfully. We'll get in touch if there's a match!</p>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-ok-btn" id="modal-ok-btn">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cookies-popup" id="cookies-popup">
+    <div class="cookies-card">
+      <div class="cookies-text">This website uses cookies to ensure you get the best experience. <a href="privacy-policy.html" class="footer-link">Learn more</a>.</div>
+      <div class="cookies-btn-row">
+        <button class="cookies-allow-btn" id="cookies-allow-btn">Allow Cookies</button>
+        <button class="cookies-reject-btn" id="cookies-reject-btn">Reject Cookies</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Animate alternating sections on scroll (image left/right + content up)
+    function animateJoinSectionsOnScroll() {
+      const sections = document.querySelectorAll('.service-section');
+      if (!sections.length) return;
+      if (!('IntersectionObserver' in window)) {
+        sections.forEach(section => {
+          section.querySelector('.service-image')?.classList.add('in-view');
+          section.querySelector('.service-content')?.classList.add('in-view');
+        });
+        return;
+      }
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.querySelector('.service-image')?.classList.add('in-view');
+            entry.target.querySelector('.service-content')?.classList.add('in-view');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      sections.forEach(section => {
+        section.querySelector('.service-image')?.classList.remove('in-view');
+        section.querySelector('.service-content')?.classList.remove('in-view');
+        observer.observe(section);
+      });
+    }
+
+    // Animate form card when visible
+    function animateJoinFormOnScroll() {
+      const card = document.getElementById('join-form-card');
+      if (!card) return;
+      if (!('IntersectionObserver' in window)) { card.classList.add('in-view'); return; }
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { card.classList.add('in-view'); obs.unobserve(card); }
+        });
+      }, { threshold: 0.3 });
+      card.classList.remove('in-view');
+      observer.observe(card);
+    }
+
+    // Mobile menu
+    function setupMobileMenu() {
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (!hamburger || !mobileMenu) return;
+      hamburger.addEventListener('click', function() {
+        const isOpen = mobileMenu.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // File upload handling
+    function setupFileUpload() {
+      const fileInput = document.getElementById('resume');
+      const filePreview = document.getElementById('file-preview');
+      const fileName = document.getElementById('file-name');
+      const removeFileBtn = document.getElementById('remove-file');
+      
+      if (fileInput && filePreview && fileName && removeFileBtn) {
+        fileInput.addEventListener('change', function(e) {
+          const file = e.target.files[0];
+          if (file) {
+            fileName.textContent = file.name;
+            filePreview.style.display = 'flex';
+          } else {
+            filePreview.style.display = 'none';
+          }
+        });
+        
+        removeFileBtn.addEventListener('click', function() {
+          fileInput.value = '';
+          filePreview.style.display = 'none';
+        });
+      }
+    }
+
+    // Form submission with thank you popup
+    function setupJoinForm() {
+      const form = document.getElementById('join-form');
+      const thankYouModal = document.getElementById('thank-you-modal');
+      const modalClose = document.getElementById('modal-close');
+      const modalOkBtn = document.getElementById('modal-ok-btn');
+      const modalOverlay = document.querySelector('.modal-overlay');
+      
+      if (!form) return;
+      
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) { 
+          form.reportValidity(); 
+          return; 
+        }
+        
+        // Show thank you modal
+        if (thankYouModal) {
+          thankYouModal.style.display = 'block';
+        }
+        
+        // Reset form
+        form.reset();
+        const filePreview = document.getElementById('file-preview');
+        if (filePreview) {
+          filePreview.style.display = 'none';
+        }
+      });
+      
+      // Modal close functionality
+      function closeModal() {
+        if (thankYouModal) {
+          thankYouModal.style.display = 'none';
+        }
+      }
+      
+      if (modalClose) {
+        modalClose.addEventListener('click', closeModal);
+      }
+      
+      if (modalOkBtn) {
+        modalOkBtn.addEventListener('click', closeModal);
+      }
+      
+      if (modalOverlay) {
+        modalOverlay.addEventListener('click', closeModal);
+      }
+      
+      // Close modal with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && thankYouModal && thankYouModal.style.display === 'block') {
+          closeModal();
+        }
+      });
+    }
+
+    // Cookies popup logic
+    function setupCookiesPopup() {
+      const popup = document.getElementById('cookies-popup');
+      const allowBtn = document.getElementById('cookies-allow-btn');
+      const rejectBtn = document.getElementById('cookies-reject-btn');
+      if (!popup || !allowBtn || !rejectBtn) return;
+      
+      // Show popup by default
+      popup.style.display = 'flex';
+      
+      // Check if user has already made a choice
+      if (localStorage.getItem('cookiesAllowed') === 'true' || localStorage.getItem('cookiesAllowed') === 'false') {
+        popup.style.display = 'none';
+        return;
+      }
+      
+      // Show popup after a short delay
+      setTimeout(() => {
+        popup.style.display = 'flex';
+      }, 1000);
+      
+      allowBtn.addEventListener('click', function() {
+        localStorage.setItem('cookiesAllowed', 'true');
+        popup.style.display = 'none';
+      });
+      rejectBtn.addEventListener('click', function() {
+        localStorage.setItem('cookiesAllowed', 'false');
+        popup.style.display = 'none';
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      animateJoinSectionsOnScroll();
+      animateJoinFormOnScroll();
+      setupMobileMenu();
+      setupFileUpload();
+      setupJoinForm();
+      setupCookiesPopup();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+# Robots.txt for Professional IT Solutions Philippines
+# https://pitsph.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Allow all search engines to crawl all content
+Allow: /assets/
+Allow: /prototype-home.html
+Allow: /prototype-about.html
+Allow: /prototype-services.html
+Allow: /prototype-team.html
+Allow: /prototype-contact.html
+Allow: /prototype-join.html
+Allow: /privacy-policy.html
+
+# Disallow crawling of sensitive areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.log$
+Disallow: /temp/
+
+# Sitemap location
+Sitemap: https://pitsph.com/sitemap.xml
+
+# Crawl delay (optional - helps prevent server overload)
+Crawl-delay: 1
+

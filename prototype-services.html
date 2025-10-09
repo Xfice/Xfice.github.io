@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional I.T Solution - Our Services</title>
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #fff;
+    }
+    .floating-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.85);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      z-index: 10;
+      transition: background 0.3s;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 2rem;
+    }
+    .logo {
+      height: 38px;
+      width: auto;
+      display: block;
+      margin-right: 1.2rem;
+      vertical-align: middle;
+    }
+    .logo-link {
+      display: flex;
+      align-items: center;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links li a {
+      color: #05607B;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-links li a:hover, .nav-links li a:focus {
+      background: #f9c846;
+      color: #05607B;
+    }
+    .section {
+      width: 100%;
+      min-height: 40vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 0 0.5rem 0;
+      box-sizing: border-box;
+      background: #fff;
+    }
+    #services { background: #f6f7fa; }
+    .services-title {
+      font-size: 4rem;
+      color: #05607B;
+      font-weight: 800;
+      text-align: center;
+      margin-top: 0.2rem;
+      margin-bottom: 0.1rem;
+      letter-spacing: 1px;
+    }
+    .services-underline {
+      width: 80px;
+      height: 4px;
+      background: #f7b70b;
+      margin: 0 auto 0.3rem auto;
+      border-radius: 2px;
+    }
+    .services-sub {
+      text-align: center;
+      font-size: 1.15rem;
+      color: #05607B;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    
+    .section-divider {
+      width: 100%;
+      max-width: 900px;
+      height: 0;
+      border: none;
+      border-top: 2.5px solid #e0e0e0;
+      margin: 1.5rem auto 1.5rem auto;
+      opacity: 0.85;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    
+    /* New alternating service sections */
+    .service-section {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: center;
+      width: 100%;
+      max-width: 100%;
+      min-height: 550px;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background: #fff;
+      gap: 0;
+    }
+    .service-section:nth-child(even) {
+      background: #f6f7fa;
+    }
+    .service-section:nth-child(odd) {
+      background: #fff;
+    }
+    .service-content {
+      flex: 1 1 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      box-sizing: border-box;
+      border: 3px solid #f7b70b;
+      border-radius: 8px;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+      background: #fff;
+    }
+    .service-section:nth-child(odd) .service-content {
+      order: 2;
+    }
+    .service-section:nth-child(even) .service-content {
+      order: 1;
+    }
+    .service-title {
+      font-size: 2.8rem;
+      color: #05607B;
+      margin-bottom: 1rem;
+      margin-top: 0;
+      letter-spacing: 0.5px;
+      font-weight: 800;
+    }
+    .service-description {
+      font-size: 1.3rem;
+      color: #05607B;
+      margin-bottom: 0;
+      margin-top: 0;
+      line-height: 1.5;
+    }
+    .service-image-container {
+      flex: 1 1 50%;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      padding: 0;
+      margin: 0;
+    }
+    .service-section:nth-child(odd) .service-image-container {
+      order: 1;
+    }
+    .service-section:nth-child(even) .service-image-container {
+      order: 2;
+    }
+    .service-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transform: translateX(-80px);
+      transition: none;
+      border-radius: 12px;
+    }
+    .service-section:nth-child(odd) .service-image {
+      transform: translateX(-80px);
+    }
+    .service-section:nth-child(even) .service-image {
+      transform: translateX(80px);
+    }
+    .service-section:nth-child(odd) .service-image.in-view {
+      animation: slideInLeft 1.2s cubic-bezier(.4,2,.6,1) forwards;
+    }
+    .service-section:nth-child(even) .service-image.in-view {
+      animation: slideInRight 1.2s cubic-bezier(.4,2,.6,1) forwards;
+    }
+    .service-content.in-view {
+      animation: slideInUp 1.2s cubic-bezier(.4,2,.6,1) forwards;
+    }
+    .service-section:nth-child(even) .service-content.in-view {
+      animation: slideInUp 1.2s cubic-bezier(.4,2,.6,1) forwards;
+    }
+    
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-80px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(80px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(80px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .site-footer {
+      width: 100%;
+      background: #fff;
+      color: #05607B;
+      font-size: 1rem;
+      text-align: center;
+      padding: 0.7rem 0 0.7rem 0;
+      border-top: 1.5px solid #eee;
+      letter-spacing: 0.2px;
+      z-index: 10;
+    }
+    .footer-link {
+      color: #05607B;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+    .cookies-popup {
+      position: fixed;
+      bottom: 2.2rem;
+      right: 2.2rem;
+      z-index: 1000;
+      display: flex;
+      align-items: flex-end;
+    }
+    .cookies-card {
+      background: #fff;
+      border: 2.5px solid #05607B;
+      border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      padding: 1.3rem 2.2rem 1.3rem 1.5rem;
+      min-width: 270px;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
+      font-size: 1.05rem;
+      color: #05607B;
+    }
+    .cookies-text {
+      margin-bottom: 0.5rem;
+      color: #05607B;
+      font-size: 1.05rem;
+    }
+    .cookies-btn-row {
+      display: flex;
+      gap: 1rem;
+    }
+    .cookies-allow-btn, .cookies-reject-btn {
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+    }
+    .cookies-allow-btn {
+      background: #f7b70b;
+      color: #05607B;
+    }
+    .cookies-allow-btn:hover, .cookies-allow-btn:focus {
+      background: #ffd700;
+    }
+    .cookies-reject-btn {
+      background: #eee;
+      color: #05607B;
+    }
+    .cookies-reject-btn:hover, .cookies-reject-btn:focus {
+      background: #05607B;
+      color: #fff;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1201;
+    }
+    .hamburger-bar {
+      width: 26px;
+      height: 3.5px;
+      background: #05607B;
+      margin: 3.5px 0;
+      border-radius: 2px;
+      transition: all 0.3s cubic-bezier(.4,2,.6,1);
+    }
+    .mobile-menu-overlay {
+      position: absolute;
+      top: 60px;
+      right: 1.2rem;
+      left: auto;
+      width: 210px;
+      height: auto;
+      background: #fff;
+      z-index: 1200;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-20px);
+      transition: opacity 0.35s cubic-bezier(.4,2,.6,1), transform 0.35s cubic-bezier(.4,2,.6,1);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 12px;
+      padding: 1.2rem 0.5rem;
+    }
+    .mobile-menu-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .mobile-nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      gap: 0.5rem;
+    }
+    .mobile-nav-links li {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .mobile-nav-links li a {
+      color: #05607B;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s;
+      padding: 0.2rem 0.5rem;
+      margin: 0;
+      border-radius: 6px;
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+    .mobile-nav-links li a:hover, .mobile-nav-links li a:focus {
+      color: #f7b70b;
+      background: #f6f7fa;
+    }
+    
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .service-section {
+        flex-direction: column;
+        min-height: 0;
+      }
+      .service-content, .service-image-container {
+        flex: 1 1 100%;
+        padding: 2rem 1rem;
+        min-width: 0;
+        min-height: 0;
+        order: unset !important;
+      }
+      .service-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        transform: translateY(80px) !important;
+      }
+      .service-image.in-view {
+        animation: slideInUp 1.2s cubic-bezier(.4,2,.6,1) forwards !important;
+      }
+      .service-title {
+        font-size: 2.6rem;
+      }
+      .service-description {
+        font-size: 1.3rem;
+      }
+    }
+    @media (min-width: 901px) {
+      .mobile-menu-overlay {
+        display: none !important;
+      }
+    }
+    @media (max-width: 700px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.7rem 1rem;
+      }
+      .nav-links {
+        gap: 1rem;
+      }
+      .logo {
+        font-size: 1.1rem;
+      }
+      .cookies-popup {
+        right: 0.5rem;
+        bottom: 0.5rem;
+      }
+      .cookies-card {
+        min-width: 180px;
+        max-width: 95vw;
+        padding: 1rem 0.7rem 1rem 0.7rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .nav-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.7rem 1rem;
+      }
+      .logo-link {
+        margin-right: auto;
+      }
+      .hamburger {
+        margin-left: auto;
+      }
+      .section {
+        min-height: 60vh;
+        padding-bottom: 2rem;
+      }
+      .service-content {
+        padding: 1.5rem 1rem;
+      }
+      .service-title {
+        font-size: 2.2rem;
+      }
+      .service-description {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* Benefits Section Styles */
+    .benefits-section {
+      background: #fff;
+      padding: 4rem 0;
+    }
+    
+    .benefits-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    
+    .benefits-title {
+      font-size: 3rem;
+      color: #05607B;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+    
+    .benefits-underline {
+      width: 80px;
+      height: 4px;
+      background: #f7b70b;
+      margin: 0 auto 1rem;
+      border-radius: 2px;
+    }
+    
+    .benefits-subtitle {
+      font-size: 1.3rem;
+      color: #05607B;
+      margin-bottom: 3rem;
+      font-weight: 500;
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .benefit-item {
+      background: #f6f7fa;
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      border-left: 4px solid #f7b70b;
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+    
+    .benefit-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+    }
+    
+    .benefit-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .benefit-item h3 {
+      font-size: 1.4rem;
+      color: #05607B;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .benefit-item p {
+      font-size: 1rem;
+      color: #05607B;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    
+    .benefit-metric {
+      background: #05607B;
+      color: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    
+    .metric-number {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #f7b70b;
+      margin-bottom: 0.3rem;
+    }
+    
+    .metric-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* CTA Section Styles */
+    .cta-section {
+      background: linear-gradient(135deg, #f9c846 0%, #fad675 100%);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    
+    .cta-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .cta-title {
+      font-size: 3rem;
+      color: #05607B;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+    
+    .cta-subtitle {
+      font-size: 1.3rem;
+      color: #05607B;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .cta-primary {
+      background: #05607B;
+      color: #fff;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .cta-primary:hover {
+      background: #0a8bb3;
+      transform: translateY(-2px);
+    }
+    
+    .cta-secondary {
+      background: transparent;
+      color: #05607B;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: 2px solid #05607B;
+      transition: all 0.3s ease;
+    }
+    
+    .cta-secondary:hover {
+      background: #05607B;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* IT Team Composition Section */
+    .it-team-section {
+      background: #f6f7fa;
+      padding: 4rem 0;
+    }
+    
+    .it-team-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    
+    .it-team-title {
+      font-size: 3rem;
+      color: #05607B;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+    
+    .it-team-subtitle {
+      font-size: 1.3rem;
+      color: #05607B;
+      margin-bottom: 3rem;
+      font-weight: 500;
+    }
+    
+    .it-team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .it-role-card {
+      background: #fff;
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border: 2px solid #e0e0e0;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+    
+    .it-role-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+      border-color: #f7b70b;
+    }
+    
+    .role-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    
+    .role-title {
+      font-size: 1.5rem;
+      color: #05607B;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    
+    .role-description {
+      font-size: 1rem;
+      color: #05607B;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    
+    .role-skills {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .role-skills li {
+      padding: 0.5rem 0;
+      color: #05607B;
+      font-size: 0.95rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .role-skills li:before {
+      content: "✓";
+      color: #f7b70b;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    /* Cookies Popup Styles */
+    .cookies-popup {
+      position: fixed;
+      bottom: 2.2rem;
+      right: 2.2rem;
+      z-index: 1000;
+      display: flex;
+      align-items: flex-end;
+    }
+    .cookies-card {
+      background: #fff;
+      border: 2.5px solid #05607B;
+      border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      padding: 1.3rem 2.2rem 1.3rem 1.5rem;
+      min-width: 270px;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
+      font-size: 1.05rem;
+      color: #05607B;
+    }
+    .cookies-text {
+      margin-bottom: 0.5rem;
+      color: #05607B;
+      font-size: 1.05rem;
+    }
+    .cookies-btn-row {
+      display: flex;
+      gap: 1rem;
+    }
+    .cookies-allow-btn, .cookies-reject-btn {
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+    }
+    .cookies-allow-btn {
+      background: #f7b70b;
+      color: #05607B;
+    }
+    .cookies-allow-btn:hover, .cookies-allow-btn:focus {
+      background: #ffd700;
+    }
+    .cookies-reject-btn {
+      background: #eee;
+      color: #05607B;
+    }
+    .cookies-reject-btn:hover, .cookies-reject-btn:focus {
+      background: #05607B;
+      color: #fff;
+    }
+
+    /* Responsive Design for new sections */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: row;
+        gap: 0;
+        padding: 0 1rem;
+        justify-content: space-between;
+      }
+      
+      .benefits-title, .cta-title, .it-team-title {
+        font-size: 2.2rem;
+      }
+      
+      .benefits-grid, .it-team-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .cta-primary, .cta-secondary {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+      }
+    }
+    
+    @media (max-width: 700px) {
+      .cookies-popup {
+        right: 0.5rem;
+        bottom: 0.5rem;
+      }
+      .cookies-card {
+        min-width: 180px;
+        max-width: 95vw;
+        padding: 1rem 0.7rem 1rem 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="floating-navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="Professional I.T Solution Logo" class="logo"></a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="prototype-about.html">About</a></li>
+          <li><a href="prototype-services.html">Service</a></li>
+          <li><a href="prototype-contact.html">Contact</a></li>
+          <li><a href="prototype-join.html">Join Us</a></li>
+        </ul>
+      </div>
+      <div class="mobile-menu-overlay" id="mobile-menu">
+        <ul class="mobile-nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="prototype-about.html">About</a></li>
+          <li><a href="prototype-services.html">Service</a></li>
+          <li><a href="prototype-contact.html">Contact</a></li>
+          <li><a href="prototype-join.html">Join Us</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="section" id="services">
+      <h2 class="services-title">OUR SOLUTIONS</h2>
+      <div class="services-underline"></div>
+      <div class="services-sub">Some of the things we can do for you...</div>
+    </div>
+    
+    <div class="section-divider"></div>
+    
+    <!-- IT Talent Services Section -->
+    <div class="service-section">
+      <div class="service-content">
+        <h2 class="service-title">IT TALENT SERVICES</h2>
+        <p class="service-description">We provide Project Based IT Talent Services in the areas of Systems Development, Project Management, Quality Assurance Management, Infrastructure Services, Technical and Helpdesk Services, etc.</p>
+      </div>
+      <div class="service-image-container">
+        <img src="assets/service-1.jpg" alt="IT Talent Services" class="service-image" />
+      </div>
+    </div>
+    
+    <!-- Back Office Support Services Section -->
+    <div class="service-section">
+      <div class="service-content">
+        <h2 class="service-title">BACK OFFICE SUPPORT SERVICES</h2>
+        <p class="service-description">We provide performance-based solutions to simplify an entire range of business process, functions and systems to ensure quality service delivery.</p>
+      </div>
+      <div class="service-image-container">
+        <img src="assets/backoffice.jpg" alt="Back Office Support Services" class="service-image" />
+      </div>
+    </div>
+    
+    <!-- Client Account Management Section -->
+    <div class="service-section">
+      <div class="service-content">
+        <h2 class="service-title">CLIENT ACCOUNT MANAGEMENT</h2>
+        <p class="service-description">Our team of marketing experts will work with you to develop strategies tailored to your business. A plan will be created to match your desired output that we will revisit, refine and, execute throughout our partnership.</p>
+      </div>
+      <div class="service-image-container">
+        <img src="assets/client.jpg" alt="Client Account Management" class="service-image" />
+      </div>
+    </div>
+
+    <!-- Service Benefits Section -->
+    <div class="benefits-section">
+      <div class="benefits-container">
+        <h2 class="benefits-title">Why Choose Our Services?</h2>
+        <div class="benefits-underline"></div>
+        <p class="benefits-subtitle">Comprehensive benefits that drive business growth</p>
+        
+        <div class="benefits-grid">
+          <div class="benefit-item">
+            <div class="benefit-icon">🚀</div>
+            <h3>Scalable Solutions</h3>
+            <p>Our IT services grow with your business, ensuring long-term value and adaptability to changing needs.</p>
+            <div class="benefit-metric">
+              <span class="metric-number">10x</span>
+              <span class="metric-label">Scalability Factor</span>
+            </div>
+          </div>
+          
+          <div class="benefit-item">
+            <div class="benefit-icon">🛡️</div>
+            <h3>Enterprise Security</h3>
+            <p>Bank-level security protocols protect your data and ensure compliance with industry standards.</p>
+            <div class="benefit-metric">
+              <span class="metric-number">99.9%</span>
+              <span class="metric-label">Uptime Guarantee</span>
+            </div>
+          </div>
+          
+          <div class="benefit-item">
+            <div class="benefit-icon">⚡</div>
+            <h3>Rapid Implementation</h3>
+            <p>Quick deployment and integration with existing systems to minimize disruption to your operations.</p>
+            <div class="benefit-metric">
+              <span class="metric-number">50%</span>
+              <span class="metric-label">Faster Deployment</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IT Team Composition Section -->
+    <div class="it-team-section">
+      <div class="it-team-container">
+        <h2 class="it-team-title">Our IT Team Composition</h2>
+        <p class="it-team-subtitle">Comprehensive expertise across all technology domains</p>
+        
+        <div class="it-team-grid">
+          <div class="it-role-card">
+            <div class="role-icon">🎨</div>
+            <h3 class="role-title">UI/UX Designers</h3>
+            <p class="role-description">Create intuitive and engaging user experiences through thoughtful design, user research, and interactive prototypes.</p>
+            <ul class="role-skills">
+              <li>User Interface Design</li>
+              <li>User Experience Research</li>
+              <li>Prototyping & Wireframing</li>
+              <li>Design Systems</li>
+            </ul>
+          </div>
+
+          <div class="it-role-card">
+            <div class="role-icon">💻</div>
+            <h3 class="role-title">Developers</h3>
+            <p class="role-description">Build robust and scalable applications using cutting-edge technologies and best practices.</p>
+            <ul class="role-skills">
+              <li>Full-Stack Development</li>
+              <li>Frontend & Backend</li>
+              <li>Mobile App Development</li>
+              <li>API Development</li>
+            </ul>
+          </div>
+
+          <div class="it-role-card">
+            <div class="role-icon">⚙️</div>
+            <h3 class="role-title">DevOps Engineers</h3>
+            <p class="role-description">Streamline development and operations through automation, monitoring, and infrastructure management.</p>
+            <ul class="role-skills">
+              <li>CI/CD Pipelines</li>
+              <li>Cloud Infrastructure</li>
+              <li>Container Orchestration</li>
+              <li>Monitoring & Logging</li>
+            </ul>
+          </div>
+
+          <div class="it-role-card">
+            <div class="role-icon">📋</div>
+            <h3 class="role-title">Business/System Analysts</h3>
+            <p class="role-description">Bridge business needs with technical solutions through analysis, documentation, and process optimization.</p>
+            <ul class="role-skills">
+              <li>Requirements Gathering</li>
+              <li>Process Analysis</li>
+              <li>System Design</li>
+              <li>Stakeholder Management</li>
+            </ul>
+          </div>
+
+          <div class="it-role-card">
+            <div class="role-icon">🔍</div>
+            <h3 class="role-title">QA Engineers</h3>
+            <p class="role-description">Ensure software quality through comprehensive testing strategies and quality assurance processes.</p>
+            <ul class="role-skills">
+              <li>Test Automation</li>
+              <li>Manual Testing</li>
+              <li>Performance Testing</li>
+              <li>Quality Assurance</li>
+            </ul>
+          </div>
+
+          <div class="it-role-card">
+            <div class="role-icon">📈</div>
+            <h3 class="role-title">Project Managers</h3>
+            <p class="role-description">Lead successful project delivery through planning, coordination, and stakeholder management.</p>
+            <ul class="role-skills">
+              <li>Project Planning</li>
+              <li>Team Leadership</li>
+              <li>Risk Management</li>
+              <li>Agile Methodologies</li>
+            </ul>
+          </div>
+
+          <div class="it-role-card">
+            <div class="role-icon">🏢</div>
+            <h3 class="role-title">Back Office Specialists</h3>
+            <p class="role-description">Support business operations through administrative and operational excellence.</p>
+            <ul class="role-skills">
+              <li>Process Optimization</li>
+              <li>Data Management</li>
+              <li>Administrative Support</li>
+              <li>Operational Efficiency</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="cta-section">
+      <div class="cta-container">
+        <h2 class="cta-title">Partner With Us</h2>
+        <p class="cta-subtitle">We Work to Deliver Top Talent and IT Hiring Solutions, Giving You Access to Skilled Professionals and Proven Recruitment Expertise</p>
+        <div class="cta-buttons">
+          <a href="prototype-contact.html" class="cta-primary">Contact Us</a>
+          <a href="prototype-about.html" class="cta-secondary">Learn More About Us</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quote Section -->
+    <div class="quote-section" style="background: #f6f7fa; padding: 4rem 0; text-align: center;">
+      <div class="quote-container" style="max-width: 800px; margin: 0 auto; padding: 0 2rem;">
+        <h2 style="font-size: 2.5rem; color: #05607B; font-weight: 800; margin-bottom: 2rem; letter-spacing: 1px;">"Together we will build strategies, build confidence, and ultimately build your business"</h2>
+        <p style="font-size: 1.3rem; color: #05607B; font-weight: 600;">TELL US WHAT YOU NEED.</p>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    Professionals I.T Solutions, Inc. © 2025 All rights reserved. | <a href="privacy-policy.html" class="footer-link">Privacy Notice</a>.
+  </footer>
+  <div class="cookies-popup" id="cookies-popup">
+    <div class="cookies-card">
+      <div class="cookies-text">This website uses cookies to ensure you get the best experience. <a href="#" class="footer-link">Learn more</a>.</div>
+      <div class="cookies-btn-row">
+        <button class="cookies-allow-btn" id="cookies-allow-btn">Allow Cookies</button>
+        <button class="cookies-reject-btn" id="cookies-reject-btn">Reject Cookies</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Animation for service sections on scroll
+    function animateServiceSectionsOnScroll() {
+      const sections = document.querySelectorAll('.service-section');
+      if (!sections.length) return;
+      
+      if (!('IntersectionObserver' in window)) {
+        sections.forEach(section => {
+          const image = section.querySelector('.service-image');
+          const content = section.querySelector('.service-content');
+          if (image) image.classList.add('in-view');
+          if (content) content.classList.add('in-view');
+        });
+        return;
+      }
+      
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const image = entry.target.querySelector('.service-image');
+            const content = entry.target.querySelector('.service-content');
+            if (image) image.classList.add('in-view');
+            if (content) content.classList.add('in-view');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      
+      sections.forEach(section => {
+        const image = section.querySelector('.service-image');
+        const content = section.querySelector('.service-content');
+        if (image) image.classList.remove('in-view');
+        if (content) content.classList.remove('in-view');
+        observer.observe(section);
+      });
+    }
+
+    // Cookies popup logic
+    function setupCookiesPopup() {
+      const popup = document.getElementById('cookies-popup');
+      const allowBtn = document.getElementById('cookies-allow-btn');
+      const rejectBtn = document.getElementById('cookies-reject-btn');
+      if (!popup || !allowBtn || !rejectBtn) return;
+      
+      // Show popup by default
+      popup.style.display = 'flex';
+      
+      // Check if user has already made a choice
+      if (localStorage.getItem('cookiesAllowed') === 'true' || localStorage.getItem('cookiesAllowed') === 'false') {
+        popup.style.display = 'none';
+        return;
+      }
+      
+      // Show popup after a short delay
+      setTimeout(() => {
+        popup.style.display = 'flex';
+      }, 1000);
+      
+      allowBtn.addEventListener('click', function() {
+        localStorage.setItem('cookiesAllowed', 'true');
+        popup.style.display = 'none';
+      });
+      rejectBtn.addEventListener('click', function() {
+        localStorage.setItem('cookiesAllowed', 'false');
+        popup.style.display = 'none';
+      });
+    }
+
+    function setupMobileMenu() {
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (!hamburger || !mobileMenu) return;
+      hamburger.addEventListener('click', function() {
+        const isOpen = mobileMenu.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      // Close menu when a link is clicked
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+      // Optional: Close on outside click or ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    function setupAnchorOffsetScroll() {
+      const navbarHeight = document.querySelector('.floating-navbar')?.offsetHeight || 70;
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = link.getAttribute('href');
+          if (href && href.startsWith('#') && href.length > 1) {
+            const target = document.querySelector(href);
+            if (target) {
+              e.preventDefault();
+              const rect = target.getBoundingClientRect();
+              const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+              const offset = rect.top + scrollTop - navbarHeight;
+              window.scrollTo({ top: offset, behavior: 'smooth' });
+            }
+          }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize all functions
+      animateServiceSectionsOnScroll();
+      setupCookiesPopup();
+      setupMobileMenu();
+      setupAnchorOffsetScroll();
+    });
+  </script>
+</body>
+</html>
