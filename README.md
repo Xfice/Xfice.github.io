@@ -18,4 +18,4 @@ clone the repository
 
 cd PITSwebsite2
 
-start prototype-home.html
+start index.html
