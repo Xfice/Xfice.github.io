@@ -5,6 +5,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Join Us - Professional I.T Solution</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     html, body {
       width: 100%;
@@ -15,149 +16,6 @@
       margin: 0;
       font-family: 'Montserrat', Arial, sans-serif;
       background: #fff;
-    }
-    .floating-navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(255,255,255,0.85);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-      z-index: 10;
-      transition: background 0.3s;
-    }
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.7rem 2rem;
-    }
-    .logo {
-      height: 38px;
-      width: auto;
-      display: block;
-      margin-right: 1.2rem;
-      vertical-align: middle;
-    }
-    .logo-link {
-      display: flex;
-      align-items: center;
-    }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-      margin: 0;
-      padding: 0;
-    }
-    .nav-links li a {
-      color: #05607B;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      transition: background 0.2s, color 0.2s;
-    }
-    .nav-links li a:hover, .nav-links li a:focus {
-      background: #f9c846;
-      color: #05607B;
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 38px;
-      height: 38px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 1201;
-    }
-    .hamburger-bar {
-      width: 26px;
-      height: 3.5px;
-      background: #05607B;
-      margin: 3.5px 0;
-      border-radius: 2px;
-      transition: all 0.3s cubic-bezier(.4,2,.6,1);
-    }
-    .mobile-menu-overlay {
-      position: absolute;
-      top: 60px;
-      right: 1.2rem;
-      left: auto;
-      width: 210px;
-      height: auto;
-      background: #fff;
-      z-index: 1200;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(-20px);
-      transition: opacity 0.35s cubic-bezier(.4,2,.6,1), transform 0.35s cubic-bezier(.4,2,.6,1);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.08);
-      border-radius: 12px;
-      padding: 1.2rem 0.5rem;
-    }
-    .mobile-menu-overlay.open {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
-    .mobile-nav-links {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      width: 100%;
-      gap: 0.5rem;
-    }
-    .mobile-nav-links li {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-    .mobile-nav-links li a {
-      color: #05607B;
-      font-size: 1.15rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: color 0.2s;
-      padding: 0.2rem 0.5rem;
-      margin: 0;
-      border-radius: 6px;
-      display: block;
-      width: 100%;
-      text-align: center;
-    }
-    .mobile-nav-links li a:hover, .mobile-nav-links li a:focus {
-      color: #f7b70b;
-      background: #f6f7fa;
-    }
-    @media (max-width: 900px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-    }
-    @media (min-width: 901px) {
-      .mobile-menu-overlay { display: none !important; }
-    }
-    @media (max-width: 768px) {
-      .nav-container {
-        flex-direction: row;
-        gap: 0;
-        padding: 0 1rem;
-        justify-content: space-between;
-      }
     }
 
     /* Hero/title section */
@@ -172,7 +30,7 @@
       box-sizing: border-box;
       background: #fff;
     }
-    #join { background: #f6f7fa; }
+    #join { background: #f6f7fa; padding-top: 5.5rem; }
     .services-title { /* reuse look */
       font-size: 4rem;
       color: #05607B;
@@ -389,6 +247,20 @@
     }
     @media (max-width: 800px) { .form-grid { grid-template-columns: 1fr; } }
 
+    /* Extra-small devices: make fields more compact and full-width */
+    @media (max-width: 360px) {
+      .join-form-card { padding: 1rem 0.8rem; }
+      .form-grid { gap: 0.8rem; }
+      label { font-size: 0.9rem; }
+      input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+        padding: 0.65rem 0.8rem;
+        font-size: 0.95rem;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .submit-btn { width: 100%; max-width: 320px; box-sizing: border-box; }
+    }
+
     /* Footer */
     .site-footer {
       width: 100%;
@@ -406,6 +278,8 @@
     /* Responsive tweaks for sections */
     @media (max-width: 900px) {
       .service-section { flex-direction: column; min-height: 0; }
+      .logo-link { margin-right: auto; }
+      .hamburger { margin-left: auto; }
       .service-content, .service-image-container {
         flex: 1 1 100%;
         padding: 2rem 1rem;
@@ -428,7 +302,7 @@
     /* Enhanced Mobile Responsive Design */
     @media (max-width: 1024px) {
       .nav-container {
-        padding: 0.7rem 1.5rem;
+        padding: 1rem 1rem; /* unify small/medium padding */
       }
       
       .hero-content {
@@ -454,9 +328,9 @@
     }
 
     @media (max-width: 768px) {
-      .nav-container {
-        padding: 0.7rem 1rem;
-      }
+      .nav-container { padding: 1rem 1rem; }
+      .logo-link { margin-right: auto; }
+      .hamburger { margin-left: auto; }
       
       .hero-content {
         padding: 0 1rem;
@@ -574,13 +448,11 @@
     }
 
     @media (max-width: 480px) {
-      .nav-container {
-        padding: 0.5rem 0.8rem;
-      }
+      .nav-container { padding: 1rem 1rem; }
+      .logo-link { margin-right: auto; }
+      .hamburger { margin-left: auto; }
       
-      .logo {
-        height: 32px;
-      }
+      .logo { height: 42px; }
       
       .hero-content {
         padding: 0 0.8rem;
@@ -1014,7 +886,7 @@
               <textarea id="message" name="message" placeholder="Tell us briefly about your experience and interests..." required></textarea>
             </div>
             <div class="form-row" style="grid-column: 1 / -1;">
-              <label for="resume">Resume/CV *</label>
+              <label for="resume">Resume/CV * (Accepted: .pdf, .doc, .docx)</label>
               <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
               <div class="file-preview" id="file-preview" style="display: none;">
                 <span class="file-name" id="file-name"></span>
@@ -1125,6 +997,53 @@
           hamburger.setAttribute('aria-expanded', 'false');
         }
       });
+    }
+
+    // Auto-hide hamburger after 20s of inactivity
+    function setupHamburgerAutoHide() {
+      const hamburger = document.getElementById('hamburger');
+      if (!hamburger) return;
+      let inactivityTimer;
+      const hideIfIdle = () => {
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuOpen = mobileMenu && mobileMenu.classList.contains('open');
+        if (!menuOpen && window.innerWidth <= 900) {
+          hamburger.classList.add('hidden');
+        }
+      };
+      const resetTimer = () => {
+        hamburger.classList.remove('hidden');
+        clearTimeout(inactivityTimer);
+        inactivityTimer = setTimeout(hideIfIdle, 20000);
+      };
+      ['mousemove','keydown','touchstart','scroll','click'].forEach(evt => {
+        window.addEventListener(evt, resetTimer, { passive: true });
+      });
+      resetTimer();
+      hamburger.addEventListener('click', resetTimer);
+    }
+
+    // Auto-close mobile menu after 20s of inactivity
+    function setupMobileMenuIdleAutoClose() {
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (!hamburger || !mobileMenu) return;
+      let inactivityTimer;
+      const closeIfIdle = () => {
+        if (window.innerWidth <= 900 && mobileMenu.classList.contains('open')) {
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      };
+      const resetIdleTimer = () => {
+        clearTimeout(inactivityTimer);
+        inactivityTimer = setTimeout(closeIfIdle, 20000);
+      };
+      ['mousemove','keydown','touchstart','scroll','click'].forEach(evt => {
+        window.addEventListener(evt, resetIdleTimer, { passive: true });
+      });
+      hamburger.addEventListener('click', resetIdleTimer);
+      resetIdleTimer();
     }
 
     // File upload handling
@@ -1244,6 +1163,8 @@
       animateJoinSectionsOnScroll();
       animateJoinFormOnScroll();
       setupMobileMenu();
+      setupHamburgerAutoHide();
+      setupMobileMenuIdleAutoClose();
       setupFileUpload();
       setupJoinForm();
       setupCookiesPopup();

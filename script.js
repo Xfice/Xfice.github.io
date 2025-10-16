@@ -174,25 +174,6 @@ function animateServicesCardsOnScroll() {
   });
 }
 
-// Animation for contact-content bounce in contact section
-function animateContactCardBounce() {
-  const card = document.querySelector('.contact-content');
-  if (!card) return;
-  if (!('IntersectionObserver' in window)) {
-    card.classList.add('in-view');
-    return;
-  }
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.4 });
-  card.classList.remove('in-view');
-  observer.observe(card);
-}
 
 // Cookies popup logic
 function setupCookiesPopup() {
@@ -236,6 +217,31 @@ function setupMobileMenu() {
       hamburger.setAttribute('aria-expanded', 'false');
     }
   });
+}
+
+// Auto-close open mobile menu after 20s of inactivity (slide up)
+function setupMobileMenuIdleAutoClose() {
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (!hamburger || !mobileMenu) return;
+  let inactivityTimer;
+  const closeIfIdle = () => {
+    if (window.innerWidth <= 900 && mobileMenu.classList.contains('open')) {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+  };
+  const resetIdleTimer = () => {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(closeIfIdle, 20000);
+  };
+  ['mousemove','keydown','touchstart','scroll','click'].forEach(evt => {
+    window.addEventListener(evt, resetIdleTimer, { passive: true });
+  });
+  // Also reset when toggling menu
+  hamburger.addEventListener('click', resetIdleTimer);
+  // Start timer
+  resetIdleTimer();
 }
 
 function setupAnchorOffsetScroll() {
@@ -286,8 +292,8 @@ document.addEventListener('DOMContentLoaded', () => {
   animateSplitImgOnScroll();
   animateAboutImgCropOnScroll();
   animateServicesCardsOnScroll();
-  animateContactCardBounce();
   setupCookiesPopup();
   setupMobileMenu();
+  setupMobileMenuIdleAutoClose();
   setup3DTiltEffect();
 }); 

@@ -6,51 +6,19 @@
   <title>Professional I.T Solution - Contact Us</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Enhanced Contact Page Effects */
+    /* Simple fade-in animation for Talk to Us card */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
     .contact-content {
-      /* Removed text animation - now stable */
+      animation: fadeIn 1.2s ease-out forwards;
     }
-
-    /* All animations removed - static display */
-    .contact-content {
-      opacity: 1 !important;
-    }
-    
-    .contact-info-item {
-      opacity: 1 !important;
-    }
-    
-    .contact-map-embed {
-      opacity: 1 !important;
-    }
-    
-    /* Override all main CSS animations - completely static */
-    .contact-content {
-      animation: none !important;
-      transform: none !important;
-    }
-    
-    .contact-content.in-view {
-      animation: none !important;
-      transform: none !important;
-    }
-    
-    .contact-info-item {
-      animation: none !important;
-      transform: none !important;
-    }
-    
-    .contact-info-item.address-bounce {
-      animation: none !important;
-      transform: none !important;
-    }
-    
-    .contact-info-item.address-bounce.in-view {
-      animation: none !important;
-      transform: none !important;
-    }
-
-    /* All hover animations removed - completely static */
     
     /* Cookies Popup Styles */
     .cookies-popup {
@@ -120,6 +88,22 @@
         max-width: 95vw;
         padding: 1rem 0.7rem 1rem 0.7rem;
       }
+    }
+    .hamburger.hidden { display: none !important; }
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: row;
+        gap: 0;
+        padding: 1rem 1rem;
+        justify-content: space-between;
+      }
+      .logo-link { margin-right: auto; }
+      .hamburger { margin-left: auto; }
+    }
+    @media (max-width: 480px) {
+      .nav-container { padding: 1rem 1rem; }
+      .logo-link { margin-right: auto; }
+      .hamburger { margin-left: auto; }
     }
   </style>
 </head>
@@ -233,6 +217,30 @@
       setupCookiesPopup();
       // The setupMobileMenu function is called automatically by script.js
     });
+
+    // Auto-hide hamburger after 20s of inactivity
+    (function setupHamburgerAutoHide(){
+      const hamburger = document.getElementById('hamburger');
+      if (!hamburger) return;
+      let inactivityTimer;
+      const hideIfIdle = () => {
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuOpen = mobileMenu && mobileMenu.classList.contains('open');
+        if (!menuOpen && window.innerWidth <= 900) {
+          hamburger.classList.add('hidden');
+        }
+      };
+      const resetTimer = () => {
+        hamburger.classList.remove('hidden');
+        clearTimeout(inactivityTimer);
+        inactivityTimer = setTimeout(hideIfIdle, 20000);
+      };
+      ['mousemove','keydown','touchstart','scroll'].forEach(evt => {
+        window.addEventListener(evt, resetTimer, { passive: true });
+      });
+      resetTimer();
+      hamburger.addEventListener('click', resetTimer);
+    })();
   </script>
 </body>
 </html>
