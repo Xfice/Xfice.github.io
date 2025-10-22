@@ -161,6 +161,27 @@
       color: #f7b70b;
       background: #f6f7fa;
     }
+    /* Attach mobile menu to navbar on small screens */
+    @media (max-width: 900px) {
+      .mobile-menu-overlay {
+        position: fixed;
+        top: 60px;
+        left: 0; right: 0;
+        width: 100%;
+        max-width: 100vw;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0; /* closed */
+      }
+      .mobile-menu-overlay.open {
+        padding: 0.5rem 0;
+        border-top: 1px solid #eaeaea;
+        border-bottom: 1px solid #eaeaea;
+      }
+      .mobile-nav-links { align-items: stretch; }
+      .mobile-nav-links li { opacity: 1; transform: none; }
+      .mobile-nav-links li a { text-align: left; padding: 0.9rem 1rem; }
+    }
     
     @media (max-width: 900px) {
       .nav-links {
@@ -624,6 +645,18 @@
       border-left: 4px solid #f7b70b;
       text-align: left;
       transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .expertise-card::after {
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 75%;
+      height: 2px;
+      background: #e0e0e0;
     }
     
     .expertise-card:hover {
@@ -1461,6 +1494,27 @@
           hamburger.setAttribute('aria-expanded', 'false');
         }
       });
+
+      // Close on outside click/tap
+      document.addEventListener('click', (e) => {
+        const target = e.target;
+        const clickInsideMenu = mobileMenu.contains(target);
+        const clickOnHamburger = hamburger.contains(target);
+        if (window.innerWidth <= 900 && mobileMenu.classList.contains('open') && !clickInsideMenu && !clickOnHamburger) {
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      }, { passive: true });
+
+      // Close on scroll/touch scroll
+      const closeOnScroll = () => {
+        if (window.innerWidth <= 900 && mobileMenu.classList.contains('open')) {
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      };
+      window.addEventListener('scroll', closeOnScroll, { passive: true });
+      window.addEventListener('touchmove', closeOnScroll, { passive: true });
     }
 
     // Auto-hide hamburger after 20s of inactivity (show on interaction)

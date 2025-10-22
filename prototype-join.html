@@ -94,7 +94,7 @@
         box-sizing: border-box;
         border: 3px solid #f7b70b;
         border-radius: 8px;
-        margin: 0;
+        margin: 0 1rem;
         overflow: hidden;
         position: relative;
         background: #fff;
@@ -216,9 +216,16 @@
       border: 2px solid #e0e0e0;
       border-radius: 10px;
       font-size: 1rem;
+      color: #05607B;
       outline: none;
       transition: border-color 0.18s, box-shadow 0.18s;
     }
+    /* Make placeholder option (Select a role) appear gray until a real value is chosen */
+    select:required:invalid { color: #9aa3ab; }
+    select option {
+      color: #05607B;
+    }
+    select option[disabled] { color: #9aa3ab; }
     input:focus, select:focus, textarea:focus {
       border-color: #05607B;
       box-shadow: 0 0 0 4px rgba(5,96,123,0.08);
@@ -249,7 +256,7 @@
 
     /* Extra-small devices: make fields more compact and full-width */
     @media (max-width: 360px) {
-      .join-form-card { padding: 1rem 0.8rem; }
+      .join-form-card { padding: 1rem 0.8rem; margin: 0 1.2rem; }
       .form-grid { gap: 0.8rem; }
       label { font-size: 0.9rem; }
       input[type="text"], input[type="email"], input[type="tel"], select, textarea {
@@ -259,6 +266,7 @@
         box-sizing: border-box;
       }
       .submit-btn { width: 100%; max-width: 320px; box-sizing: border-box; }
+      .service-content { margin: 0 1.2rem 1.5rem 1.2rem; padding: 1rem 0.6rem; }
     }
 
     /* Footer */
@@ -287,6 +295,9 @@
         min-height: 0;
         order: unset !important;
       }
+      .service-content {
+        margin: 0 1rem 1.5rem 1rem;
+      }
       .service-image { width: 100%; height: 300px; object-fit: cover; transform: translateY(80px) !important; }
       .service-image.in-view { animation: slideInUp 1.2s cubic-bezier(.4,2,.6,1) forwards !important; }
       .service-title { font-size: 2.6rem; }
@@ -294,9 +305,15 @@
     }
     @media (max-width: 600px) {
       .section { min-height: 60vh; padding-bottom: 2rem; }
-      .service-content { padding: 1.5rem 1rem; }
+      .service-content { padding: 1.5rem 1rem; margin: 0 0.8rem 1.5rem 0.8rem; }
       .service-title { font-size: 2.2rem; }
       .service-description { font-size: 1.2rem; }
+      .join-form-card { margin: 0 0.8rem; }
+    }
+    
+    @media (max-width: 400px) {
+      .service-content { margin: 0 1.2rem 1.5rem 1.2rem; padding: 1.2rem 0.8rem; }
+      .join-form-card { margin: 0 1.2rem; }
     }
 
     /* Enhanced Mobile Responsive Design */
@@ -367,9 +384,9 @@
       }
       
       .service-content {
-        width: 100%;
+        width: calc(100% - 2rem);
         padding: 2rem 1rem;
-        margin: 0;
+        margin: 0 1rem 1.5rem 1rem;
         box-sizing: border-box;
       }
       
@@ -452,7 +469,7 @@
       .logo-link { margin-right: auto; }
       .hamburger { margin-left: auto; }
       
-      .logo { height: 42px; }
+      .logo { height: 32px; }
       
       .hero-content {
         padding: 0 0.8rem;
@@ -486,8 +503,8 @@
       
       .service-content {
         padding: 1.5rem 0.8rem;
-        width: 100%;
-        margin: 0;
+        width: calc(100% - 2.4rem);
+        margin: 0 1.2rem 1.5rem 1.2rem;
         box-sizing: border-box;
       }
       
@@ -504,6 +521,11 @@
         width: 100%;
         margin: 0;
         box-sizing: border-box;
+      }
+      
+      .join-form-card {
+        margin: 0 1.2rem;
+        width: calc(100% - 2.4rem);
       }
       
       .service-image {
@@ -588,14 +610,15 @@
     }
     
     .remove-file {
-      background: #dc3545;
-      color: white;
+      background: #dc3545 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffffff"><path d="M9 3h6a1 1 0 0 1 1 1v1h4a1 1 0 1 1 0 2h-1.1l-1.07 12.04A3 3 0 0 1 13.84 22h-3.68a3 3 0 0 1-2.99-2.96L6.1 7H5a1 1 0 1 1 0-2h4V4a1 1 0 0 1 1-1Zm1 2h4V4h-4v1Zm-2.88 2 1.03 11.6a1 1 0 0 0 .99.9h3.72a1 1 0 0 0 .99-.9L15.88 7H7.12Z"/></svg>') no-repeat center;
+      background-size: 14px 14px;
+      color: transparent;
       border: none;
       border-radius: 50%;
       width: 24px;
       height: 24px;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 0; /* hide any text like '×' */
       line-height: 1;
       display: flex;
       align-items: center;
@@ -997,6 +1020,27 @@
           hamburger.setAttribute('aria-expanded', 'false');
         }
       });
+
+      // Close menu on outside click/tap
+      document.addEventListener('click', (e) => {
+        const target = e.target;
+        const clickInsideMenu = mobileMenu.contains(target);
+        const clickOnHamburger = hamburger.contains(target);
+        if (window.innerWidth <= 900 && mobileMenu.classList.contains('open') && !clickInsideMenu && !clickOnHamburger) {
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      }, { passive: true });
+
+      // Close menu on scroll or touch scroll
+      const closeOnScroll = () => {
+        if (window.innerWidth <= 900 && mobileMenu.classList.contains('open')) {
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      };
+      window.addEventListener('scroll', closeOnScroll, { passive: true });
+      window.addEventListener('touchmove', closeOnScroll, { passive: true });
     }
 
     // Auto-hide hamburger after 20s of inactivity

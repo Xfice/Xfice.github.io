@@ -217,6 +217,27 @@ function setupMobileMenu() {
       hamburger.setAttribute('aria-expanded', 'false');
     }
   });
+
+  // Close on outside click/tap
+  document.addEventListener('click', (e) => {
+    const target = e.target;
+    const clickInsideMenu = mobileMenu.contains(target);
+    const clickOnHamburger = hamburger.contains(target);
+    if (window.innerWidth <= 900 && mobileMenu.classList.contains('open') && !clickInsideMenu && !clickOnHamburger) {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+  }, { passive: true });
+
+  // Close on scroll/touch scroll
+  const closeOnScroll = () => {
+    if (window.innerWidth <= 900 && mobileMenu.classList.contains('open')) {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+  };
+  window.addEventListener('scroll', closeOnScroll, { passive: true });
+  window.addEventListener('touchmove', closeOnScroll, { passive: true });
 }
 
 // Auto-close open mobile menu after 20s of inactivity (slide up)

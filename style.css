@@ -295,6 +295,7 @@ body {
   color: #05607B;
   max-width: 700px;
   margin: 0.5rem auto 0 auto;
+  padding: 0 1rem;
 }
 .steps-section {
   display: flex;
@@ -463,12 +464,47 @@ body {
   filter: none;
 }
 @media (max-width: 900px) {
+  .about-section h2 {
+    padding: 0 1rem;
+  }
   .about-steps-row {
     flex-direction: column;
     gap: 1.5rem;
     align-items: center;
   }
+  .about-steps-row .step {
+    margin: 0 1rem;
+    width: calc(100% - 2rem);
+  }
 }
+
+@media (max-width: 480px) {
+  .about-section h2 {
+    padding: 0 1rem;
+  }
+  .about-section p {
+    padding: 0 1.2rem;
+  }
+  .about-steps-row .step {
+    margin: 0 1.2rem;
+    width: calc(100% - 2.4rem);
+  }
+}
+
+
+@media (max-width: 360px) {
+  .about-section h2 {
+    padding: 0 1.2rem;
+  }
+  .about-section p {
+    padding: 0 1.5rem;
+  }
+  .about-steps-row .step {
+    margin: 0 1.5rem;
+    width: calc(100% - 3rem);
+  }
+}
+
 .about-img-cropper {
   width: 100vw;
   height: 400px;
@@ -981,7 +1017,8 @@ body {
 }
 @media (max-width: 700px) {
   .contact-content {
-    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+    padding: 1.2rem 0.8rem 1.2rem 0.8rem; /* add side gutters to prevent outline touching edges */
+    margin: 3rem 0.8rem 0 0.8rem; /* slightly closer to navbar */
   }
   .contact-info-group {
     gap: 0.8rem;
@@ -1184,6 +1221,38 @@ body {
   }
 }
 
+/* Mobile menu attached to navbar on small screens */
+@media (max-width: 900px) {
+  .mobile-menu-overlay {
+    position: fixed; /* attach to navbar */
+    top: 60px; /* navbar height */
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100vw;
+    margin: 0;
+    border-radius: 0; /* flush with edges */
+    box-shadow: none; /* no floating look */
+    right: 0;
+  }
+  .mobile-menu-overlay.open {
+    padding: 0.5rem 0; /* simple vertical rhythm */
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+  }
+  .mobile-nav-links {
+    align-items: stretch; /* full-width items */
+  }
+  .mobile-nav-links li {
+    opacity: 1;
+    transform: none;
+  }
+  .mobile-nav-links li a {
+    text-align: left;
+    padding: 0.9rem 1rem;
+  }
+}
+
 /* Ensure desktop navbar spacing is consistent */
 @media (min-width: 901px) {
   .hamburger { display: none; }
@@ -1228,7 +1297,7 @@ body {
   box-sizing: border-box;
   border: 3px solid #f7b70b;
   border-radius: 8px;
-  margin: 0;
+  margin: 0 1rem;
   overflow: hidden;
   position: relative;
   background: #fff;
@@ -1286,6 +1355,9 @@ body {
     min-width: 0; min-height: 0;
     order: unset !important;
   }
+  .service-content {
+    margin-bottom: 1.5rem;
+  }
   .service-image {
     width: 100%; height: 300px; object-fit: cover;
     transform: translateY(80px) !important;
@@ -1295,7 +1367,7 @@ body {
   .service-description { font-size: 1.15rem; }
 }
 @media (max-width: 600px) {
-  .service-content { padding: 1.5rem 1rem; }
+  .service-content { padding: 1.5rem 1rem; margin-bottom: 1.5rem; }
   .service-title { font-size: 1.8rem; letter-spacing: 0.2px; }
   .service-description { font-size: 1.05rem; }
 }
@@ -1306,11 +1378,12 @@ body {
 /* Tight gutters on very small screens */
 @media (max-width: 480px) {
   .service-content, .service-image-container { padding-left: 1rem; padding-right: 1rem; }
+  .service-content { margin-bottom: 1.5rem; }
   .service-section .service-image-container { order: -1; padding-top: 0; margin: 0; }
   .service-image { transform: none !important; }
 }
 @media (max-width: 360px) {
-  .service-content { padding: 1.2rem 0.8rem; }
+  .service-content { padding: 1.2rem 0.8rem; margin-bottom: 1.5rem; }
   .service-image-container { padding-left: 0.8rem; padding-right: 0.8rem; }
 }
 
@@ -1351,17 +1424,18 @@ body {
 .it-team-title { font-size: 3rem; color: #05607B; font-weight: 800; margin-bottom: 1rem; letter-spacing: 1px; }
 .it-team-subtitle { font-size: 1.3rem; color: #05607B; margin-bottom: 3rem; font-weight: 500; }
 .it-team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
-.it-role-card { background: #fff; padding: 2.5rem 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 2px solid #e0e0e0; transition: all 0.3s ease; text-align: left; }
+.it-role-card { background: #fff; padding: 2.5rem 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 2px solid #e0e0e0; transition: all 0.3s ease; text-align: center; }
 .it-role-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); border-color: #f7b70b; }
 .role-icon { font-size: 3rem; margin-bottom: 1rem; text-align: center; }
 .role-title { font-size: 1.5rem; color: #05607B; font-weight: 700; margin-bottom: 1rem; text-align: center; }
-.role-description { font-size: 1rem; color: #05607B; line-height: 1.6; margin-bottom: 1.5rem; }
-.role-skills { list-style: none; padding: 0; margin: 0; }
-.role-skills li { padding: 0.5rem 0; color: #05607B; font-size: 0.95rem; position: relative; padding-left: 1.5rem; }
-.role-skills li:before { content: "✓"; color: #f7b70b; font-weight: bold; position: absolute; left: 0; }
+.role-description { font-size: 1rem; color: #05607B; line-height: 1.6; margin-bottom: 1.5rem; text-align: center; }
+.role-skills { list-style: none; padding: 0; margin: 0; text-align: center; }
+.role-skills li { padding: 0.5rem 0; color: #05607B; font-size: 0.95rem; padding-left: 0; text-align: center; }
+.role-skills li:before { content: "✓"; color: #f7b70b; font-weight: bold; position: static; display: inline-block; margin-right: 0.4rem; }
 @media (max-width: 480px) { .it-team-container { padding: 0 1rem; } }
-@media (max-width: 360px) { .it-team-container { padding: 0 0.8rem; } }
-@media (max-width: 320px) { .it-team-container { padding: 0 0.6rem; } }
+@media (max-width: 360px) { .it-team-container { padding: 0 0.8rem; } .it-team-title { font-size: 2rem; } .it-team-subtitle { font-size: 1.1rem; } }
+@media (max-width: 320px) { .it-team-container { padding: 0 0.6rem; } .it-team-title { font-size: 1.8rem; } .it-team-subtitle { font-size: 1rem; } }
+@media (max-width: 280px) { .it-team-title { font-size: 1.7rem; } .it-team-subtitle { font-size: 0.95rem; } }
 
 /* Quote section (baseline) */
 .quote-section { background: #f6f7fa; padding: 4rem 0; text-align: center; }

@@ -300,6 +300,7 @@
       overflow: hidden;
       box-shadow: 0 2px 10px rgba(0,0,0,0.08);
       border: 1px solid #e0e0e0;
+      padding: 0.4rem 0.6rem; /* inner spacing so content isn't flush to edge */
     }
     
     .faq-question {
@@ -348,7 +349,7 @@
     }
     
     .faq-answer-content {
-      padding: 1.5rem 2rem;
+      padding: 1.5rem 2rem 2rem 2rem;
       font-size: 1rem;
       color: #05607B;
       line-height: 1.6;
@@ -485,6 +486,44 @@
       .values-container { padding: 0 1rem; }
       .values-grid { grid-template-columns: 1fr; gap: 1rem; }
       .value-card { padding: 1.2rem; width: 100%; max-width: 100%; box-sizing: border-box; margin: 0 auto; }
+    }
+    
+    @media (max-width: 375px) {
+      .testimonials-section {
+        text-align: left;
+      }
+      .testimonials-container {
+        text-align: left;
+      }
+      .testimonials-title {
+        text-align: left;
+        font-size: 2rem;
+      }
+      .testimonials-underline {
+        margin: 0 auto 1rem auto;
+      }
+      .testimonials-subtitle {
+        text-align: left;
+        font-size: 1.1rem;
+      }
+    }
+    
+    @media (max-width: 320px) {
+      .testimonials-title {
+        font-size: 1.7rem;
+      }
+      .testimonials-subtitle {
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 280px) {
+      .testimonials-title {
+        font-size: 1.5rem;
+      }
+      .testimonials-subtitle {
+        font-size: 0.9rem;
+      }
     }
     
     /* Prevent overflow of About split headings on small screens */
