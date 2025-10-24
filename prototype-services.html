@@ -534,13 +534,32 @@
           hamburger.setAttribute('aria-expanded', 'false');
         });
       });
-      // Optional: Close on outside click or ESC
+      // Close on outside click
+      document.addEventListener('click', (e) => {
+        const target = e.target;
+        const clickInsideMenu = mobileMenu.contains(target);
+        const clickOnHamburger = hamburger.contains(target);
+        if (window.innerWidth <= 900 && mobileMenu.classList.contains('open') && !clickInsideMenu && !clickOnHamburger) {
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      }, { passive: true });
+      // Optional: Close on ESC
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
           mobileMenu.classList.remove('open');
           hamburger.setAttribute('aria-expanded', 'false');
         }
       });
+      // Close on scroll/touch scroll
+      const closeOnScroll = () => {
+        if (window.innerWidth <= 900 && mobileMenu.classList.contains('open')) {
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      };
+      window.addEventListener('scroll', closeOnScroll, { passive: true });
+      window.addEventListener('touchmove', closeOnScroll, { passive: true });
     }
 
     // Auto-hide hamburger after 20s of inactivity
